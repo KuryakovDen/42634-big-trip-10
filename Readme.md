@@ -1,7 +1,7 @@
 # Личный проект «Большое путешествие» [![Build status][travis-image]][travis-url]
 
 * Студент: [Денис Куряков](https://up.htmlacademy.ru/ecmascript/10/user/42634).
-* Наставник: `Неизвестно`.
+* Наставник: [Алексей Белявский](https://htmlacademy.ru/profile/id666435).
 
 ---
 
