@@ -1,6 +1,6 @@
 'use strict';
 
-const DAYS_COUNT = 3;
+const CARDS_COUNT = 3;
 
 const createSiteMenu = () => {
   return (
@@ -435,7 +435,7 @@ render(getTripEvents(), createBuildForm());
 render(getTripEvents(), createEditEventTemplate());
 render(getTripEvents(), createTripContainerTemplate());
 
-new Array(DAYS_COUNT)
+new Array(CARDS_COUNT)
   .fill(``)
   .forEach(() => render(getTripEvents(), createTripDays()));
 
