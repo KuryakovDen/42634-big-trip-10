@@ -33,23 +33,34 @@ const createSiteFilters = () => {
 };
 
 const createBuildForm = () => {
-  return ``;
+  return (``);
 };
 
 const createTripCard = () => {
-  return ``;
+  return (``);
 };
 
 const createInfoRoute = () => {
-  return ``;
-};
+  return (
+    `<div class="trip-info__main">
+      <h1 class="trip-info__title">Amsterdam &mdash; ... &mdash; Amsterdam</h1>
 
-const getTripControls = () => {
-  return document.querySelector(`.trip-controls`);
+      <p class="trip-info__dates">Mar 18&nbsp;&mdash;&nbsp;21</p>
+    </div>`);
 };
 
 const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
+};
+
+const getTripInfo = () => {
+  return document.querySelector('.trip-info');
+};
+
+render(getTripInfo(), createInfoRoute(), `afterbegin`);
+
+const getTripControls = () => {
+  return document.querySelector(`.trip-controls`);
 };
 
 render(getTripControls(), createSiteMenu());
