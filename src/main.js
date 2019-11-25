@@ -1,10 +1,10 @@
 import {createSiteMenu} from './components/menu.js';
 import {createSiteFilters} from './components/filter.js';
-import {createBuildForm} from '/components/form.js';
-import {createEditEventTemplate} from '/components/edit-event.js';
-import {createTripContainerTemplate} from '/components/trip-container.js';
-import {createTripDays} from '/components/trip-days.js';
-import {createInfoRoute} from '/components/info-route.js';
+import {createBuildForm} from './components/site-form.js';
+import {createEditEventTemplate} from './components/edit-event.js';
+import {createTripContainerTemplate} from './components/trip-container.js';
+import {createTripDays} from './components/trip-days.js';
+import {createInfoRoute} from './components/info-route.js';
 
 const CARDS_COUNT = 3;
 
