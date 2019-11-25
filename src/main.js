@@ -1,4 +1,3 @@
-'use strict';
 
 const CARDS_COUNT = 3;
 
