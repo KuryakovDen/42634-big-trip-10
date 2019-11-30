@@ -527,11 +527,15 @@ const getTripEvents = () => {
   return document.querySelector(`.trip-events`);
 };
 
+const getTripList = () => {
+  return document.querySelector(`.trip-days`);
+};
+
 render(getTripEvents(), createBuildForm());
 render(getTripEvents(), createEditEventTemplate());
 render(getTripEvents(), createTripContainerTemplate());
 
-new Array(CARDS_COUNT).fill(``).forEach(() => render(getTripEvents(), createTripDays()));
+new Array(CARDS_COUNT).fill(``).forEach(() => render(getTripList(), createTripDays()));
 
 
 /***/ })

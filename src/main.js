@@ -6,7 +6,7 @@ import {createTripContainerTemplate} from './components/trip-container.js';
 import {createTripDays} from './components/trip-days.js';
 import {createInfoRoute} from './components/info-route.js';
 
-const CARDS_COUNT = 3;
+const CARDS_COUNT = 30;
 
 const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
@@ -33,4 +33,4 @@ render(getTripEvents(), createBuildForm());
 render(getTripEvents(), createEditEventTemplate());
 render(getTripEvents(), createTripContainerTemplate());
 
-new Array(CARDS_COUNT).fill(``).forEach(() => render(getTripEvents(), createTripDays()));
+new Array(CARDS_COUNT).fill(``).forEach(() => render(createTripContainerTemplate(), createTripDays()), `afterbegin`);
