@@ -6,7 +6,7 @@ import {createTripContainerTemplate} from './components/trip-container.js';
 import {createTripDays} from './components/trip-days.js';
 import {createInfoRoute} from './components/info-route.js';
 
-const CARDS_COUNT = 30;
+const CARDS_COUNT = 3;
 
 const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
@@ -29,8 +29,12 @@ const getTripEvents = () => {
   return document.querySelector(`.trip-events`);
 };
 
+const getTripList = () => {
+  return document.querySelector(`.trip-days`);
+};
+
 render(getTripEvents(), createBuildForm());
 render(getTripEvents(), createEditEventTemplate());
 render(getTripEvents(), createTripContainerTemplate());
 
-new Array(CARDS_COUNT).fill(``).forEach(() => render(createTripContainerTemplate(), createTripDays()), `afterbegin`);
+new Array(CARDS_COUNT).fill(``).forEach(() => render(getTripList(), createTripDays()));
