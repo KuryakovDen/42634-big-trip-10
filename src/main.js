@@ -6,6 +6,7 @@ import {createTripContainerTemplate} from './components/trip-container.js';
 import {createTripDays} from './components/trip-days.js';
 import {createInfoRoute} from './components/info-route.js';
 // import {defaultTrip} from './const.js';
+// import {getRandomDate} from './util.js';
 // import {renderEvent} from './mock/edit-event.js';
 
 const CARDS_COUNT = 3;

@@ -115,6 +115,14 @@ const extraOfferType = {
   train: `train`
 };
 
+const TimeValue = {
+  MINUTE: 60 * 1000,
+  HOUR: (60 * 1000) * 60,
+  HALF_DAY: (60 * 1000 * 60) * 12,
+  DAY: (60 * 1000 * 60 * 12) * 2,
+  WEEK: (60 * 1000 * 60 * 12 * 2) * 7
+};
+
 /* const defaultStartDate = new Date();
 const defaultEndDate = defaultStartDate;
 
@@ -164,4 +172,4 @@ const descriptionSentences = [
   `In rutrum ac purus sit amet tempus.`
 ];
 
-export {eventType, extraOfferTypeProperties, descriptionSentences, cities, eventTypeProperties, DirectionForMoving, MovingType, months, extraOfferType};
+export {eventType, extraOfferTypeProperties, descriptionSentences, cities, eventTypeProperties, DirectionForMoving, MovingType, months, extraOfferType, TimeValue};
