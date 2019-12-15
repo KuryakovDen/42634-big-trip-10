@@ -1,4 +1,4 @@
-export const createTripDays = () => {
+const createTripDays = () => {
   return (
     `<li class="trip-days__item  day">
       <div class="day__info">
@@ -303,3 +303,5 @@ export const createTripDays = () => {
     </li>`
   );
 };
+
+export {createTripDays};

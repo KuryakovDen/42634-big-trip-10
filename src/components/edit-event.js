@@ -1,4 +1,4 @@
-export const createEditEventTemplate = () => {
+const createEditEventTemplate = () => {
   return (
     `<form class="trip-events__item  event  event--edit" action="#" method="post">
       <header class="event__header">
@@ -170,3 +170,5 @@ export const createEditEventTemplate = () => {
     </form>`
   );
 };
+
+export {createEditEventTemplate};

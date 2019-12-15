@@ -1,4 +1,4 @@
-export const createInfoRoute = () => {
+const createInfoRoute = () => {
   return (
     `<div class="trip-info__main">
       <h1 class="trip-info__title">Amsterdam &mdash; ... &mdash; Amsterdam</h1>
@@ -7,3 +7,5 @@ export const createInfoRoute = () => {
     </div>`
   );
 };
+
+export {createInfoRoute};

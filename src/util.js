@@ -1,17 +1,19 @@
-export const generateRandomElement = (array) => {
+const generateRandomElement = (array) => {
   let index = Math.floor(Math.random() * array.length);
   return array[index];
 };
 
-export const generateRandomRangeNumber = (min, max) => {
+const generateRandomRangeNumber = (min, max) => {
   return min + Math.floor(Math.random() * max);
 };
 
-export const convertTimeFormat = (value) => {
+const convertTimeFormat = (value) => {
   return value < 10 ? `0${value}` : String(value);
 };
 
-export const convertDateFormat = (currentDate) => {
+const getRandomLogicType = () => Math.random() ? true : false;
+
+const convertDateFormat = (currentDate) => {
   const date = new Date(currentDate);
   const hours = convertTimeFormat(date.getHours() % 12);
   const minutes = convertTimeFormat(date.getMinutes());
@@ -20,3 +22,5 @@ export const convertDateFormat = (currentDate) => {
 
   return `${hours}:${minutes} ${interval}`;
 };
+
+export {generateRandomElement, getRandomLogicType, generateRandomRangeNumber, convertTimeFormat, convertDateFormat};

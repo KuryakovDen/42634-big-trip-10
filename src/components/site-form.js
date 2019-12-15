@@ -1,4 +1,4 @@
-export const createBuildForm = () => {
+const createBuildForm = () => {
   return (
     `<form class="trip-events__trip-sort  trip-sort" action="#" method="get">
       <span class="trip-sort__item  trip-sort__item--day">Day</span>
@@ -28,3 +28,5 @@ export const createBuildForm = () => {
     </form>`
   );
 };
+
+export {createBuildForm};
