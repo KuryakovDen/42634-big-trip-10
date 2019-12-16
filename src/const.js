@@ -123,10 +123,10 @@ const TimeValue = {
   WEEK: (60 * 1000 * 60 * 12 * 2) * 7
 };
 
-/* const defaultStartDate = new Date();
+const defaultStartDate = new Date();
 const defaultEndDate = defaultStartDate;
 
- const defaultTrip = {
+const defaultTrip = {
   type: eventType.flight,
   startTrip: defaultStartDate,
   endTrip: defaultEndDate,
@@ -134,7 +134,7 @@ const defaultEndDate = defaultStartDate;
   cost: 0,
   isFavourite: false,
   offers: []
-};*/
+};
 
 const extraOfferTypeProperties = {
   [extraOfferType.luggage]: {
@@ -172,4 +172,14 @@ const descriptionSentences = [
   `In rutrum ac purus sit amet tempus.`
 ];
 
-export {eventType, extraOfferTypeProperties, descriptionSentences, cities, eventTypeProperties, DirectionForMoving, MovingType, months, extraOfferType, TimeValue};
+export {eventType,
+  extraOfferTypeProperties,
+  descriptionSentences,
+  cities,
+  eventTypeProperties,
+  DirectionForMoving,
+  MovingType,
+  months,
+  extraOfferType,
+  TimeValue,
+  defaultTrip};

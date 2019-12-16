@@ -1,4 +1,4 @@
-import {TimeValue} from './const.js';
+import {TimeValue, eventTypeProperties} from './const.js';
 
 const generateRandomElement = (array) => {
   let index = Math.floor(Math.random() * array.length);
@@ -20,11 +20,11 @@ const getRandomDate = (startDate, interval) => {
   return date;
 };
 
-/* const getRandomMinute = (startDate) => getRandomDate(startDate, Tim.MINUTE);
-const getRandomHour = (startDate) => getRandomDate(startDate, Tim.HOUR);
-const getRandomHalfDay = (startDate) => getRandomDate(startDate, Tim.HALF_DAY);
-const getRandomDay = (startDate) => getRandomDate(startDate, Tim.DAY);
-const getRandomWeek = (startDate) => getRandomDate(startDate, Tim.WEEK);*/
+const getRandomMinute = (startDate) => getRandomDate(startDate, TimeValue.MINUTE);
+const getRandomHour = (startDate) => getRandomDate(startDate, TimeValue.HOUR);
+const getRandomHalfDay = (startDate) => getRandomDate(startDate, TimeValue.HALF_DAY);
+const getRandomDay = (startDate) => getRandomDate(startDate, TimeValue.DAY);
+const getRandomWeek = (startDate) => getRandomDate(startDate, TimeValue.WEEK);
 
 const convertTimeFormat = (value) => {
   return value < 10 ? `0${value}` : String(value);
@@ -40,4 +40,29 @@ const convertDateFormat = (currentDate) => {
   return `${hours}:${minutes} ${interval}`;
 };
 
-export {generateRandomElement, getRandomDate, getRandomLogicType, generateRandomRangeNumber, convertTimeFormat, convertDateFormat};
+const generateOfferList = (eventType) => {
+  const availableOfferTypes = eventTypeProperties[eventType].availableOfferTypes;
+  const offers = availableOfferTypes ? Array.from(availableOfferTypes).map((it) => {
+    return {
+      type: it,
+      isChecked: getRandomLogicType(),
+      cost: generateRandomRangeNumber(10, 100)
+    };
+  }) : [];
+
+  return offers;
+};
+
+export {generateRandomElement,
+  getRandomDate,
+  getRandomLogicType,
+  generateRandomRangeNumber,
+  convertTimeFormat,
+  convertDateFormat,
+  getRandomMinute,
+  getRandomHour,
+  getRandomHalfDay,
+  getRandomDay,
+  getRandomWeek,
+  generateOfferList
+};
