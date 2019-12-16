@@ -8,6 +8,7 @@ import {createInfoRoute} from './components/info-route.js';
 // import {defaultTrip} from './const.js';
 // import {generateOfferList} from './util.js';
 // import {renderEvent} from './mock/edit-event.js';
+// import {generateDescription, descriptionSentences} from './mock/destination.js';
 
 const CARDS_COUNT = 3;
 

@@ -1,4 +1,4 @@
-import {TimeValue, eventTypeProperties} from './const.js';
+import {TimeValue} from './const.js';
 
 const generateRandomElement = (array) => {
   let index = Math.floor(Math.random() * array.length);
@@ -40,19 +40,6 @@ const convertDateFormat = (currentDate) => {
   return `${hours}:${minutes} ${interval}`;
 };
 
-const generateOfferList = (eventType) => {
-  const availableOfferTypes = eventTypeProperties[eventType].availableOfferTypes;
-  const offers = availableOfferTypes ? Array.from(availableOfferTypes).map((it) => {
-    return {
-      type: it,
-      isChecked: getRandomLogicType(),
-      cost: generateRandomRangeNumber(10, 100)
-    };
-  }) : [];
-
-  return offers;
-};
-
 export {generateRandomElement,
   getRandomDate,
   getRandomLogicType,
@@ -63,6 +50,5 @@ export {generateRandomElement,
   getRandomHour,
   getRandomHalfDay,
   getRandomDay,
-  getRandomWeek,
-  generateOfferList
+  getRandomWeek
 };

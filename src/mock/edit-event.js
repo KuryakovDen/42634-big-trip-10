@@ -1,11 +1,6 @@
-import {generateRandomRangeNumber, generateRandomElement, getRandomDay, getRandomLogicType, generateOfferList} from '../util.js';
+import {generateRandomRangeNumber, generateRandomElement, getRandomDay, getRandomLogicType} from '../util.js';
 import {defaultTrip, eventType, cities} from '../const.js';
-
-const generateDescription = (text) => {
-  return text
-    .filter(() => Math.random() > 0.5)
-    .slice(1, generateRandomRangeNumber(2, 3));
-};
+import {generateOfferList} from './offer.js';
 
 const renderEvent = (startData) => {
   const event = {};
@@ -22,4 +17,4 @@ const renderEvent = (startData) => {
   return event;
 };
 
-export {generateDescription, renderEvent};
+export {renderEvent};
