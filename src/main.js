@@ -5,7 +5,7 @@ import {createEditEventTemplate} from './components/edit-event.js';
 import {createTripContainerTemplate} from './components/trip-container.js';
 import {createTripDays} from './components/trip-days.js';
 import {createInfoRoute} from './components/info-route.js';
-// import {defaultTrip} from './const.js';
+import {filters} from './const.js';
 // import {generateOfferList} from './util.js';
 // import {renderEvent} from './mock/edit-event.js';
 // import {generateDescription, descriptionSentences} from './mock/destination.js';
@@ -16,20 +16,19 @@ const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
 };
 
-const getTripInfo = () => {
-  return document.querySelector(`.trip-info`);
-};
+const tripInfo = document.querySelector(`.trip-info`);
 
-render(getTripInfo(), createInfoRoute(), `afterbegin`);
+render(tripInfo, createInfoRoute(), `afterbegin`);
 
-const getTripControls = () => {
-  return document.querySelector(`.trip-controls`);
-};
+const tripControls = document.querySelector(`.trip-controls`);
 
-render(getTripControls(), createSiteMenu());
-render(getTripControls(), createSiteFilters());
+render(tripControls, createSiteMenu());
 
-const getTripEvents = () => {
+const tripFilters = tripControls.querySelectorAll(`.trip-controls h2`);
+
+render(tripFilters[0], createSiteFilters(filters), `afterend`);
+
+const tripEvents = () => {
   return document.querySelector(`.trip-events`);
 };
 
@@ -37,8 +36,8 @@ const getTripList = () => {
   return document.querySelector(`.trip-days`);
 };
 
-render(getTripEvents(), createBuildForm());
-render(getTripEvents(), createEditEventTemplate());
-render(getTripEvents(), createTripContainerTemplate());
+render(tripEvents(), createBuildForm());
+render(tripEvents(), createEditEventTemplate());
+render(tripEvents(), createTripContainerTemplate());
 
 new Array(CARDS_COUNT).fill(``).forEach(() => render(getTripList(), createTripDays()));

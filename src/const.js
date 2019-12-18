@@ -158,6 +158,23 @@ const extraOfferTypeProperties = {
   }
 };
 
+const filters = [
+  {
+    name: `Everything`,
+    isChecked: false
+  },
+
+  {
+    name: `Future`,
+    isChecked: true
+  },
+
+  {
+    name: `Past`,
+    isChecked: false
+  }
+];
+
 export {eventType,
   extraOfferTypeProperties,
   cities,
@@ -167,4 +184,5 @@ export {eventType,
   months,
   extraOfferType,
   TimeValue,
-  defaultTrip};
+  defaultTrip,
+  filters};
