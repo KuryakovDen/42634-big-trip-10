@@ -1,4 +1,4 @@
-import {generateRandomRangeNumber, getRandomLogicType} from '../util.js';
+import {generateRandomRangeNumber, getRandomLogicType} from '../utils.js';
 import {eventTypeProperties} from '../const.js';
 
 const generateOfferList = (eventType) => {

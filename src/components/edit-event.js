@@ -1,5 +1,5 @@
 import {eventTypeProperties, MovingType, cities, extraOfferTypeProperties, DirectionForMoving, defaultTrip} from '../const.js';
-import {getTime, getDate} from '../util.js';
+import {getTime, getDate} from '../utils.js';
 import {generatePhotoList, generateDescription} from '../mock/destination.js';
 
 const createEventTypeItem = (eventType) => {

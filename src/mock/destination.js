@@ -1,4 +1,4 @@
-import {generateRandomRangeNumber} from '../util.js';
+import {generateRandomRangeNumber} from '../utils.js';
 
 const descriptionSentences = [
   `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,

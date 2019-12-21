@@ -1,12 +1,12 @@
 import {createSiteMenu} from './components/menu.js';
 import {createSiteFilters} from './components/filter.js';
 import {createBuildForm} from './components/site-form.js';
-import {createEditEventTemplate} from './components/edit-event.js';
+// import {createEditEventTemplate} from './components/edit-event.js';
 import {createTripContainerTemplate} from './components/trip-container.js';
 import {createTripDays} from './components/trip-days.js';
 import {createInfoRoute} from './components/info-route.js';
 import {filters} from './const.js';
-// import {generateOfferList} from './util.js';
+// import {generateOfferList} from './utils.js';
 // import {renderEvent} from './mock/edit-event.js';
 // import {generateDescription, descriptionSentences} from './mock/destination.js';
 
@@ -37,7 +37,7 @@ const getTripList = () => {
 };
 
 render(tripEvents(), createBuildForm());
-render(tripEvents(), createEditEventTemplate());
+// render(tripEvents(), createEditEventTemplate());
 render(tripEvents(), createTripContainerTemplate());
 
 new Array(CARDS_COUNT).fill(``).forEach(() => render(getTripList(), createTripDays()));

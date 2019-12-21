@@ -1,4 +1,4 @@
-import {generateRandomRangeNumber, generateRandomElement, getRandomDay, getRandomLogicType} from '../util.js';
+import {generateRandomRangeNumber, generateRandomElement, getRandomDay, getRandomLogicType} from '../utils.js';
 import {defaultTrip, eventType, cities} from '../const.js';
 import {generateOfferList} from './offer.js';
 

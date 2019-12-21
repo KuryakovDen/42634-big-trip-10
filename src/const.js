@@ -130,7 +130,7 @@ const defaultTrip = {
   type: eventType.flight,
   startTrip: defaultStartDate,
   endTrip: defaultEndDate,
-  desctination: ``,
+  desctination: `Default Description`,
   cost: 0,
   isFavourite: false,
   offers: []
