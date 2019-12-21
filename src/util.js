@@ -40,6 +40,11 @@ const convertDateFormat = (currentDate) => {
   return `${hours}:${minutes} ${interval}`;
 };
 
+const getShortYear = (date) => String(date.getFullYear()).substr(2, 2);
+const getDate = (date, separator = `-`) => `${getShortYear(date)}${separator}${convertTimeFormat(date.getMonth() + 1)}${separator}${convertTimeFormat(date.getDate())}`;
+const getTime = (date) => `${convertTimeFormat(date.getHours())}:${convertTimeFormat(date.getMinutes())}`;
+const getDateTime = (date) => `${getDate(date)}T${getTime(date)}`;
+
 export {generateRandomElement,
   getRandomDate,
   getRandomLogicType,
@@ -50,5 +55,8 @@ export {generateRandomElement,
   getRandomHour,
   getRandomHalfDay,
   getRandomDay,
-  getRandomWeek
+  getRandomWeek,
+  getDate,
+  getTime,
+  getDateTime
 };
