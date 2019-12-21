@@ -161,12 +161,12 @@ const extraOfferTypeProperties = {
 const filters = [
   {
     name: `Everything`,
-    isChecked: false
+    isChecked: true
   },
 
   {
     name: `Future`,
-    isChecked: true
+    isChecked: false
   },
 
   {
