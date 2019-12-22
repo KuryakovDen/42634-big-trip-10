@@ -1,10 +1,10 @@
-import {Months, TimeValue} from './const.js'
+import {Months, TimeValue} from './const.js';
 
-export const getRandomNumber = (max, min = 0) => Math.round(min + Math.random() * (max - min));
+const getRandomNumber = (max, min = 0) => Math.round(min + Math.random() * (max - min));
 
-export const getRandomElement = (array) => array[getRandomNumber(array.length - 1)];
+const getRandomElement = (array) => array[getRandomNumber(array.length - 1)];
 
-export const getRandomBoolean = () => {
+const getRandomBoolean = () => {
   return Math.random() > 0.5 ? true : false;
 };
 
@@ -17,30 +17,30 @@ const getRandomDate = (dateStart, during) => {
   date.setTime(time);
 
   return date;
-}
+};
 
-export const getRandomHour = (dateStart) => getRandomDate(dateStart, TimeValue.HOUR);
-export const getRandomTwoHours = (dateStart) => getRandomDate(dateStart, TimeValue.TWO_HOURS);
-export const getRandomHalfDay = (dateStart) => getRandomDate(dateStart, TimeValue.HALF_DAY);
-export const getRandomDay = (dateStart) => getRandomDate(dateStart, TimeValue.DAY);
-export const getRandomTwoDays = (dateStart) => getRandomDate(dateStart, TimeValue.TWO_DAYS);
-export const getRandomWeek = (dateStart) => getRandomDate(dateStart, TimeValue.WEEK);
-export const getRandom2Week = (dateStart) => getRandomDate(dateStart, TimeValue.TWO_WEEKS);
+const getRandomHour = (dateStart) => getRandomDate(dateStart, TimeValue.HOUR);
+const getRandomTwoHours = (dateStart) => getRandomDate(dateStart, TimeValue.TWO_HOURS);
+const getRandomHalfDay = (dateStart) => getRandomDate(dateStart, TimeValue.HALF_DAY);
+const getRandomDay = (dateStart) => getRandomDate(dateStart, TimeValue.DAY);
+const getRandomTwoDays = (dateStart) => getRandomDate(dateStart, TimeValue.TWO_DAYS);
+const getRandomWeek = (dateStart) => getRandomDate(dateStart, TimeValue.WEEK);
+const getRandom2Week = (dateStart) => getRandomDate(dateStart, TimeValue.TWO_WEEKS);
 
-export const getDaysCount = (dateMin, dateMax) => {
+const getDaysCount = (dateMin, dateMax) => {
   const dateMinCopy = new Date(+dateMin);
   dateMinCopy.setSeconds(0);
   dateMinCopy.setMinutes(0);
   dateMinCopy.setHours(0);
   return Math.floor((+dateMax - dateMinCopy) / TimeValue.DAY);
-}
+};
 
-export const getShortYear = (date) => String(date.getFullYear()).substr(2, 2);
-export const getDate = (date, separator = '-') => `${getShortYear(date)}${separator}${formatNumber(date.getMonth()+1)}${separator}${formatNumber(date.getDate())}`;
-export const getTime = (date) => `${formatNumber(date.getHours())}:${formatNumber(date.getMinutes())}`;
-export const getDateTime = (date) => `${getDate(date)}T${getTime(date)}`;
+const getShortYear = (date) => String(date.getFullYear()).substr(2, 2);
+const getDate = (date, separator = `-`) => `${getShortYear(date)}${separator}${formatNumber(date.getMonth() + 1)}${separator}${formatNumber(date.getDate())}`;
+const getTime = (date) => `${formatNumber(date.getHours())}:${formatNumber(date.getMinutes())}`;
+const getDateTime = (date) => `${getDate(date)}T${getTime(date)}`;
 
-export const formatDate = (date1, date2) => {
+const formatDate = (date1, date2) => {
   let time = Math.abs(+date1 - date2);
   let daysCount = Math.floor(time / TimeValue.DAY);
 
@@ -54,7 +54,27 @@ export const formatDate = (date1, date2) => {
   hoursCount = hoursCount === 0 && daysCount === 0 ? `` : `${formatNumber(hoursCount)}H`;
   minutesCount = `${formatNumber(minutesCount)}M`;
 
-  return `${daysCount} ${hoursCount} ${minutesCount}`.replace(/  +/g, ' ');
-}
+  return `${daysCount} ${hoursCount} ${minutesCount}`.replace(/  +/g, ` `);
+};
 
-export const getShortDate = (date) => `${date.getDate()} ${Months[date.getMonth()]}`;
+const getShortDate = (date) => `${date.getDate()} ${Months[date.getMonth()]}`;
+
+export {
+  getRandomNumber,
+  getRandomElement,
+  getRandomBoolean,
+  getRandomHour,
+  getRandomTwoHours,
+  getRandomHalfDay,
+  getRandomDay,
+  getRandomTwoDays,
+  getRandomWeek,
+  getRandom2Week,
+  getDaysCount,
+  getShortYear,
+  getDate,
+  getTime,
+  getDateTime,
+  formatDate,
+  getShortDate
+};

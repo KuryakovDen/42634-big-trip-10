@@ -11,7 +11,6 @@ const generateEventData = (startData) => {
   event.start = startData;
   event.finish = getRandomTwoDays(event.start);
   event.destination = getRandomElement(Destinations);
-  // event.destination = getRandomBoolean() ? getRandomElement(Destinations) : ``;
   event.cost = getRandomNumber(1000, 20);
   event.isFavorite = getRandomBoolean();
 

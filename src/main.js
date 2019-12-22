@@ -4,31 +4,15 @@ import createFilter from './components/filter.js';
 import createSort from './components/sort.js';
 import createTripList from './components/trip-list.js';
 import generateEventList from './mock/event-data.js';
+import {menuItemList, filterItemList, sortItemList} from './const.js';
 
 const eventList = generateEventList();
-
-const menuItemList = [
-  { name: `Table`, href: `#`, active: true },
-  { name: `Stats`, href: `#`, active: false }
-];
-
-const filterItemList = [
-  { name: `Everything`, checked: true },
-  { name: `Future`, checked: false },
-  { name: `Past`, checked: false }
-];
-
-const sortItemList = [
-  { name: `Event`, checked: true, direction: false },
-  { name: `Time`, checked: false, direction: true },
-  { name: `Price`, checked: false, direction: true }
-];
 
 const render = (container, html, position = `beforeend`) => {
   container.insertAdjacentHTML(position, html);
 };
 
-const sumOffers = (offerList) => offerList.reduce((accum, current) => accum + current.checked * current.cost, 0);
+const sumOffers = (offerList) => offerList.reduce((accum, current) => accum + current.isChecked * current.cost, 0);
 const sumEvents = (events) => events.reduce((accum, current) => accum + current.cost + sumOffers(current.offers), 0);
 
 const renderIndex = () => {

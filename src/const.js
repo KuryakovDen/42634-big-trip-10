@@ -1,14 +1,14 @@
-export const MovingType = {
+const MovingType = {
   MOVING: `moving`,
   STAYING: `staying`
-}
+};
 
-export const PlaceholderParticle = {
+const PlaceholderParticle = {
   [MovingType.MOVING]: `to`,
   [MovingType.STAYING]: `in`
-}
+};
 
-export const EventType = {
+const EventType = {
   TAXI: `Taxi`,
   BUS: `Bus`,
   TRAIN: `Train`,
@@ -22,7 +22,7 @@ export const EventType = {
   TRIP: `Trip`
 };
 
-export const EventTypeProperties = {
+const EventTypeProperties = {
   [EventType.TAXI]: {
     name: `Taxi`,
     icon: `taxi.png`,
@@ -88,9 +88,9 @@ export const EventTypeProperties = {
     icon: `trip.png`,
     movingType: MovingType.MOVING
   }
-}
+};
 
-export const Destinations = [
+const Destinations = [
   `Vein`,
   `Minsk`,
   `London`,
@@ -112,9 +112,9 @@ export const Destinations = [
   `Paris`,
   `Prague`,
   `Sydney`
-]
+];
 
-export const Months = [
+const Months = [
   `JAN`,
   `FEB`,
   `MAR`,
@@ -129,7 +129,7 @@ export const Months = [
   `DEC`
 ];
 
-export const TimeValue = {
+const TimeValue = {
   MINUTE: 60 * 1000,
   HOUR: 60 * 60 * 1000,
   TWO_HOURS: 2 * 60 * 60 * 1000,
@@ -138,9 +138,9 @@ export const TimeValue = {
   TWO_DAYS: 2 * 2 * 12 * 60 * 60 * 1000,
   WEEK: 7 * 2 * 12 * 60 * 60 * 1000,
   TWO_WEEKS: 14 * 2 * 12 * 60 * 60 * 1000
-}
+};
 
-export const EVENT_DEFAULT = {
+const EVENT_DEFAULT = {
   type: EventType.FLIGHT,
   start: new Date(),
   finish: new Date(Date.now() + TimeValue.DAY),
@@ -150,7 +150,7 @@ export const EVENT_DEFAULT = {
   offers: []
 };
 
-export const OfferType = {
+const OfferType = {
   LUGGAGE: `luggage`,
   COMFORT: `comfort`,
   MEAL: `meal`,
@@ -158,7 +158,7 @@ export const OfferType = {
   TRAIN: `train`
 };
 
-export const OfferTypeOptions = {
+const OfferTypeOptions = {
   [OfferType.LUGGAGE]: {
     name: `Add luggage`
   },
@@ -178,4 +178,37 @@ export const OfferTypeOptions = {
   [OfferType.TRAIN]: {
     name: `Travel by train`
   }
-}
+};
+
+const menuItemList = [
+  {name: `Table`, href: `#`, active: true},
+  {name: `Stats`, href: `#`, active: false}
+];
+
+const filterItemList = [
+  {name: `Everything`, isChecked: true},
+  {name: `Future`, isChecked: false},
+  {name: `Past`, isChecked: false}
+];
+
+const sortItemList = [
+  {name: `Event`, isChecked: true, direction: false},
+  {name: `Time`, isChecked: false, direction: true},
+  {name: `Price`, isChecked: false, direction: true}
+];
+
+export {
+  menuItemList,
+  filterItemList,
+  sortItemList,
+  MovingType,
+  PlaceholderParticle,
+  EventType,
+  EventTypeProperties,
+  Destinations,
+  Months,
+  TimeValue,
+  EVENT_DEFAULT,
+  OfferType,
+  OfferTypeOptions
+};
