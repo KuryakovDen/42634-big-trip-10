@@ -40,4 +40,4 @@ render(tripEvents(), createBuildForm());
 // render(tripEvents(), createEditEventTemplate());
 render(tripEvents(), createTripContainerTemplate());
 
-new Array(CARDS_COUNT).fill(``).forEach(() => render(getTripList(), createTripDays()));
+// new Array(CARDS_COUNT).fill(``).forEach(() => render(getTripList(), createTripDays()));

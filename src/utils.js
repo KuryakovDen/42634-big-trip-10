@@ -1,4 +1,4 @@
-import {TimeValue} from './const.js';
+import {TimeValue, months} from './const.js';
 
 const generateRandomElement = (array) => {
   let index = Math.floor(Math.random() * array.length);
@@ -44,6 +44,33 @@ const getShortYear = (date) => String(date.getFullYear()).substr(2, 2);
 const getDate = (date, separator = `-`) => `${getShortYear(date)}${separator}${convertTimeFormat(date.getMonth() + 1)}${separator}${convertTimeFormat(date.getDate())}`;
 const getTime = (date) => `${convertTimeFormat(date.getHours())}:${convertTimeFormat(date.getMinutes())}`;
 const getDateTime = (date) => `${getDate(date)}T${getTime(date)}`;
+const getShortDate = (date) => `${date.getDate()} ${months[date.getMonth()]}`;
+
+const getDaysCount = (dateMin, dateMax) => {
+  const dateMinCopy = new Date(+dateMin);
+  dateMinCopy.setSeconds(0);
+  dateMinCopy.setMinutes(0);
+  dateMinCopy.setHours(0);
+
+  return Math.floor((+dateMax - dateMinCopy) / TimeValue.DAY);
+};
+
+const formatDate = (date1, date2) => {
+  let time = Math.abs(+date1 - date2);
+  let daysCount = Math.floor(time / TimeValue.DAY);
+
+  time -= daysCount * TimeValue.DAY;
+  let hoursCount = Math.floor(time / TimeValue.HOUR);
+
+  time -= hoursCount * TimeValue.HOUR;
+  let minutesCount = Math.round(time / TimeValue.MINUTE);
+
+  daysCount = daysCount > 0 ? `${convertTimeFormat(daysCount)}D` : ``;
+  hoursCount = hoursCount === 0 && daysCount === 0 ? `` : `${convertTimeFormat(hoursCount)}H`;
+  minutesCount = `${convertTimeFormat(minutesCount)}M`;
+
+  return `${daysCount} ${hoursCount} ${minutesCount}`.replace(/  +/g, ` `);
+};
 
 export {generateRandomElement,
   getRandomDate,
@@ -58,5 +85,8 @@ export {generateRandomElement,
   getRandomWeek,
   getDate,
   getTime,
-  getDateTime
+  getDateTime,
+  getDaysCount,
+  getShortDate,
+  formatDate
 };
