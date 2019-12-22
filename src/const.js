@@ -1,10 +1,124 @@
-const cities = [`Amsterdam`, `Geneva`, `Chamonix`, `Saint Petersburg`];
+export const MovingType = {
+  MOVING: `moving`,
+  STAYING: `staying`
+}
 
-const months = [
+export const PlaceholderParticle = {
+  [MovingType.MOVING]: `to`,
+  [MovingType.STAYING]: `in`
+}
+
+export const EventType = {
+  TAXI: `Taxi`,
+  BUS: `Bus`,
+  TRAIN: `Train`,
+  SHIP: `Ship`,
+  TRANSPORT: `Transport`,
+  DRIVE: `Drive`,
+  FLIGHT: `Flight`,
+  CHECKIN: `Check-in`,
+  SIGHTSEEING: `Sightseeing`,
+  RESTAURANT: `Restaurant`,
+  TRIP: `Trip`
+};
+
+export const EventTypeProperties = {
+  [EventType.TAXI]: {
+    name: `Taxi`,
+    icon: `taxi.png`,
+    movingType: MovingType.MOVING
+  },
+
+  [EventType.BUS]: {
+    name: `Bus`,
+    icon: `bus.png`,
+    movingType: MovingType.MOVING
+  },
+
+  [EventType.TRAIN]: {
+    name: `Train`,
+    icon: `train.png`,
+    movingType: MovingType.MOVING
+  },
+
+  [EventType.SHIP]: {
+    name: `Ship`,
+    icon: `ship.png`,
+    movingType: MovingType.MOVING
+  },
+
+  [EventType.TRANSPORT]: {
+    name: `Transport`,
+    icon: `transport.png`,
+    movingType: MovingType.MOVING
+  },
+
+  [EventType.DRIVE]: {
+    name: `Drive`,
+    icon: `drive.png`,
+    movingType: MovingType.MOVING
+  },
+
+  [EventType.FLIGHT]: {
+    name: `Flight`,
+    icon: `flight.png`,
+    movingType: MovingType.MOVING
+  },
+
+  [EventType.CHECKIN]: {
+    name: `Check-in`,
+    icon: `check-in.png`,
+    movingType: MovingType.STAYING
+  },
+
+  [EventType.SIGHTSEEING]: {
+    name: `Sightseeing`,
+    icon: `sightseeing.png`,
+    movingType: MovingType.STAYING
+  },
+
+  [EventType.RESTAURANT]: {
+    name: `Restaurant`,
+    icon: `restaurant.png`,
+    movingType: MovingType.STAYING
+  },
+
+  [EventType.TRIP]: {
+    name: `Trip`,
+    icon: `trip.png`,
+    movingType: MovingType.MOVING
+  }
+}
+
+export const Destinations = [
+  `Vein`,
+  `Minsk`,
+  `London`,
+  `Birmingham`,
+  `Budapest`,
+  `Berlin`,
+  `Barcelona`,
+  `Rome`,
+  `Milan`,
+  `Warsaw`,
+  `Moscow`,
+  `St. Petersburg`,
+  `Perm`,
+  `Derevnya`,
+  `Istanbul`,
+  `Kiev`,
+  `Kharkov`,
+  `Odessa`,
+  `Paris`,
+  `Prague`,
+  `Sydney`
+]
+
+export const Months = [
   `JAN`,
   `FEB`,
   `MAR`,
-  `APL`,
+  `APR`,
   `MAY`,
   `JUN`,
   `JUL`,
@@ -15,174 +129,53 @@ const months = [
   `DEC`
 ];
 
-const MovingType = {
-  moving: `moving`,
-  staying: `staying`
-};
-
-const DirectionForMoving = {
-  [MovingType.moving]: `to`,
-  [MovingType.staying]: `in`
-};
-
-const eventType = {
-  taxi: `Taxi`,
-  bus: `Bus`,
-  train: `Train`,
-  ship: `Ship`,
-  transport: `Transport`,
-  drive: `Drive`,
-  flight: `Flight`,
-  checkin: `Check-in`,
-  sightseeing: `Sightseeing`,
-  restaraunt: `Restaraunt`,
-  trip: `Trip`
-};
-
-const eventTypeProperties = {
-  [eventType.taxi]: {
-    name: eventType.taxi,
-    icon: `${eventType.taxi.toLowerCase()}.png`,
-    movingMethod: MovingType.moving
-  },
-
-  [eventType.bus]: {
-    name: eventType.bus,
-    icon: `${eventType.bus.toLowerCase()}.png`,
-    movingMethod: MovingType.moving
-  },
-
-  [eventType.train]: {
-    name: eventType.train,
-    icon: `${eventType.train.toLowerCase()}.png`,
-    movingMethod: MovingType.moving
-  },
-
-  [eventType.ship]: {
-    name: eventType.ship,
-    icon: `${eventType.ship.toLowerCase()}.png`,
-    movingMethod: MovingType.moving
-  },
-
-  [eventType.transport]: {
-    name: eventType.transport,
-    icon: `${eventType.transport.toLowerCase()}.png`,
-    movingMethod: MovingType.moving
-  },
-
-  [eventType.drive]: {
-    name: eventType.drive,
-    icon: `${eventType.taxi.toLowerCase()}.png`,
-    movingMethod: MovingType.moving
-  },
-
-  [eventType.flight]: {
-    name: eventType.flight,
-    icon: `${eventType.taxi.toLowerCase()}.png`,
-    movingMethod: MovingType.moving
-  },
-
-  [eventType.flight]: {
-    name: eventType.checkin,
-    icon: `${eventType.checkin.toLowerCase()}.png`,
-    movingMethod: MovingType.staying
-  },
-
-  [eventType.sightseeing]: {
-    name: eventType.sightseeing,
-    icon: `${eventType.sightseeing.toLowerCase()}.png`,
-    movingMethod: MovingType.staying
-  },
-
-  [eventType.restaraunt]: {
-    name: eventType.restaraunt,
-    icon: `${eventType.restaraunt.toLowerCase()}.png`,
-    movingMethod: MovingType.staying
-  },
-
-  [eventType.trip]: {
-    name: eventType.trip,
-    icon: `${eventType.trip.toLowerCase()}.png`,
-    movingMethod: MovingType.moving
-  }
-};
-
-const extraOfferType = {
-  luggage: `luggage`,
-  comfort: `comfort`,
-  meal: `meal`,
-  seats: `seats`,
-  train: `train`
-};
-
-const TimeValue = {
+export const TimeValue = {
   MINUTE: 60 * 1000,
-  HOUR: (60 * 1000) * 60,
-  HALF_DAY: (60 * 1000 * 60) * 12,
-  DAY: (60 * 1000 * 60 * 12) * 2,
-  WEEK: (60 * 1000 * 60 * 12 * 2) * 7
-};
+  HOUR: 60 * 60 * 1000,
+  TWO_HOURS: 2 * 60 * 60 * 1000,
+  HALF_DAY: 12 * 60 * 60 * 1000,
+  DAY: 2 * 12 * 60 * 60 * 1000,
+  TWO_DAYS: 2 * 2 * 12 * 60 * 60 * 1000,
+  WEEK: 7 * 2 * 12 * 60 * 60 * 1000,
+  TWO_WEEKS: 14 * 2 * 12 * 60 * 60 * 1000
+}
 
-const defaultStartDate = new Date();
-const defaultEndDate = defaultStartDate;
-
-const defaultTrip = {
-  type: eventType.flight,
-  startTrip: defaultStartDate,
-  endTrip: defaultEndDate,
-  desctination: `Default Description`,
+export const EVENT_DEFAULT = {
+  type: EventType.FLIGHT,
+  start: new Date(),
+  finish: new Date(Date.now() + TimeValue.DAY),
+  destination: ``,
   cost: 0,
-  isFavourite: false,
+  isFavorite: false,
   offers: []
 };
 
-const extraOfferTypeProperties = {
-  [extraOfferType.luggage]: {
-    name: `Add ${extraOfferType.luggage}`
-  },
-
-  [extraOfferType.comfort]: {
-    name: `Switch ${extraOfferType.comfort}`
-  },
-
-  [extraOfferType.meal]: {
-    name: `Add ${extraOfferType.meal}`
-  },
-
-  [extraOfferType.seats]: {
-    name: `Choose ${extraOfferType.seats}`
-  },
-
-  [extraOfferType.train]: {
-    name: `Travel by ${extraOfferType.train}`
-  }
+export const OfferType = {
+  LUGGAGE: `luggage`,
+  COMFORT: `comfort`,
+  MEAL: `meal`,
+  SEATS: `seats`,
+  TRAIN: `train`
 };
 
-const filters = [
-  {
-    name: `Everything`,
-    isChecked: true
+export const OfferTypeOptions = {
+  [OfferType.LUGGAGE]: {
+    name: `Add luggage`
   },
 
-  {
-    name: `Future`,
-    isChecked: false
+  [OfferType.COMFORT]: {
+    name: `Switch to comfort class`
   },
 
-  {
-    name: `Past`,
-    isChecked: false
+  [OfferType.MEAL]: {
+    name: `Add meal`
+  },
+
+  [OfferType.SEATS]: {
+    name: `Choose seats`
+  },
+
+  [OfferType.TRAIN]: {
+    name: `Travel by train`
   }
-];
-
-export {eventType,
-  extraOfferTypeProperties,
-  cities,
-  eventTypeProperties,
-  DirectionForMoving,
-  MovingType,
-  months,
-  extraOfferType,
-  TimeValue,
-  defaultTrip,
-  filters};
+}
