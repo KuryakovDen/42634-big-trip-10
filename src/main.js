@@ -1,40 +1,32 @@
-import {createSiteMenu} from './components/menu.js';
-import {createSiteFilters} from './components/filter.js';
-import {createBuildForm} from './components/site-form.js';
-import {createEditEventTemplate} from './components/edit-event.js';
-import {createTripContainerTemplate} from './components/trip-container.js';
-import {createTripDays} from './components/trip-days.js';
-import {createInfoRoute} from './components/info-route.js';
+import createTripInfo from './components/trip-info.js';
+import createMenu from './components/menu.js';
+import createFilter from './components/filter.js';
+import createSort from './components/sort.js';
+import createTripList from './components/trip-list.js';
+import generateEventList from './mock/event-data.js';
+import {menuItemList, filterItemList, sortItemList} from './const.js';
 
-const CARDS_COUNT = 3;
+const eventList = generateEventList();
 
-const render = (container, template, place = `beforeend`) => {
-  container.insertAdjacentHTML(place, template);
+const render = (container, html, position = `beforeend`) => {
+  container.insertAdjacentHTML(position, html);
 };
 
-const getTripInfo = () => {
-  return document.querySelector(`.trip-info`);
+const sumOffers = (offerList) => offerList.reduce((accum, current) => accum + current.isChecked * current.cost, 0);
+const sumEvents = (events) => events.reduce((accum, current) => accum + current.cost + sumOffers(current.offers), 0);
+
+const renderIndex = () => {
+  const tripMainElement = document.querySelector(`.trip-main`);
+  const tripEventsElement = document.querySelector(`.trip-events h2`);
+  const tripInfoElement = tripMainElement.querySelector(`.trip-info`);
+  const tripControlElements = tripMainElement.querySelectorAll(`.trip-controls h2`);
+
+  render(tripInfoElement, createTripInfo(eventList), `afterbegin`);
+  render(tripControlElements[0], createMenu(menuItemList), `afterend`);
+  render(tripControlElements[1], createFilter(filterItemList), `afterend`);
+  render(tripEventsElement, `${createSort(sortItemList)}\n${createTripList(eventList)}`, `afterend`);
 };
 
-render(getTripInfo(), createInfoRoute(), `afterbegin`);
+renderIndex();
 
-const getTripControls = () => {
-  return document.querySelector(`.trip-controls`);
-};
-
-render(getTripControls(), createSiteMenu());
-render(getTripControls(), createSiteFilters());
-
-const getTripEvents = () => {
-  return document.querySelector(`.trip-events`);
-};
-
-const getTripList = () => {
-  return document.querySelector(`.trip-days`);
-};
-
-render(getTripEvents(), createBuildForm());
-render(getTripEvents(), createEditEventTemplate());
-render(getTripEvents(), createTripContainerTemplate());
-
-new Array(CARDS_COUNT).fill(``).forEach(() => render(getTripList(), createTripDays()));
+document.querySelector(`.trip-info__cost-value`).innerText = sumEvents(eventList);
