@@ -59,6 +59,13 @@ const formatDate = (date1, date2) => {
 
 const getShortDate = (date) => `${date.getDate()} ${Months[date.getMonth()]}`;
 
+const createElement = (template) => {
+  const newElement = document.createElement(`div`);
+  newElement.innerHTML = template;
+
+  return newElement.firstChild;
+};
+
 export {
   getRandomNumber,
   getRandomElement,
@@ -76,5 +83,6 @@ export {
   getTime,
   getDateTime,
   formatDate,
-  getShortDate
+  getShortDate,
+  createElement
 };
