@@ -1,33 +1,6 @@
 import createForm from './form.js';
 import {EventTypeProperties, PlaceholderParticle, OfferTypeOptions} from '../const.js';
-import {getDaysCount, formatDate, getDateTime, getTime, getShortDate} from '../utils.js';
-
-const createTripList = (eventList) => {
-  const days = [];
-  let dayCounter = 1;
-  let dayDate = eventList[0].start;
-  let dayEvents = [eventList[0]];
-  const formEvent = eventList[0];
-
-  for (let i = 1; i < eventList.length; i++) {
-    const daysCount = getDaysCount(dayDate, eventList[i].start);
-
-    if (daysCount === 0) {
-      dayEvents.push(eventList[i]);
-    }
-
-    days.push(createTripDay(dayDate, dayCounter, createEventListHtml(dayEvents, formEvent)));
-    dayCounter += daysCount;
-    dayDate = eventList[i].start;
-    dayEvents = [eventList[i]];
-  }
-
-  if (dayEvents.length) {
-    days.push(createTripDay(dayDate, dayCounter, createEventListHtml(dayEvents)));
-  }
-
-  return `<ul class="trip-days">${days.join(`\n`)}</ul>`;
-};
+import {getDaysCount, formatDate, getDateTime, getTime, getShortDate, createElement} from '../utils.js';
 
 const createTripDay = (date, dayCounter, eventsHtml) => {
   const dateText = getShortDate(date);
@@ -106,4 +79,54 @@ const createEventListHtml = (eventList, formEvent) => {
     </ul>`);
 };
 
-export default createTripList;
+const createTripList = (eventList) => {
+  const days = [];
+  let dayCounter = 1;
+  let dayDate = eventList[0].start;
+  let dayEvents = [eventList[0]];
+  const formEvent = eventList[0];
+
+  for (let i = 1; i < eventList.length; i++) {
+    const daysCount = getDaysCount(dayDate, eventList[i].start);
+
+    if (daysCount === 0) {
+      dayEvents.push(eventList[i]);
+    }
+
+    days.push(createTripDay(dayDate, dayCounter, createEventListHtml(dayEvents, formEvent)));
+    dayCounter += daysCount;
+    dayDate = eventList[i].start;
+    dayEvents = [eventList[i]];
+  }
+
+  if (dayEvents.length) {
+    days.push(createTripDay(dayDate, dayCounter, createEventListHtml(dayEvents)));
+  }
+
+  return `<ul class="trip-days">${days.join(`\n`)}</ul>`;
+};
+
+export default class TripListComponent {
+  constructor(events) {
+    this._element = null;
+    this._events = events;
+  }
+
+  getTemplate() {
+    return createTripList(this._events);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
+
+export {createTripList};
