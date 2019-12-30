@@ -1,5 +1,5 @@
 import {createTripInfo} from './components/trip-info.js';
-import createMenu from './components/menu.js';
+import {createMenu} from './components/menu.js';
 import createFilter from './components/filter.js';
 import createSort from './components/sort.js';
 import {createTripList} from './components/trip-list.js';

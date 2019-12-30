@@ -1,3 +1,5 @@
+import {createElement} from '../utils.js';
+
 const createMenuItem = (menuItem) => `
 <a class="trip-tabs__btn ${menuItem.active ? `  trip-tabs__btn--active` : ``}" href="${menuItem.href}">${menuItem.name}</a>`;
 
@@ -6,4 +8,27 @@ const createMenu = (menuItems) => {
   return `<nav class="trip-controls__trip-tabs  trip-tabs">${menuItemList}</nav>`;
 };
 
-export default createMenu;
+export default class MenuComponent {
+  constructor(menuPoints) {
+    this._element = null;
+    this._menuPoints = menuPoints;
+  }
+
+  getTemplate() {
+    return createMenu(this._menuPoints);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
+
+export {createMenu};
