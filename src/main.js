@@ -5,7 +5,7 @@ import createSort from './components/sort.js';
 import createTripList from './components/trip-list.js';
 import generateEventList from './mock/event-data.js';
 import {menuItemList, filterItemList, sortItemList} from './const.js';
-import {render, RenderPoition} from './util.js';
+import {render, RenderPoition} from './utils.js';
 
 const eventList = generateEventList();
 

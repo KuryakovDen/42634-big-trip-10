@@ -1,6 +1,6 @@
 import createForm from './form.js';
 import {EventTypeProperties, PlaceholderParticle, OfferTypeOptions} from '../const.js';
-import {getDaysCount, formatDate, getDateTime, getTime, getShortDate} from '../util.js';
+import {getDaysCount, formatDate, getDateTime, getTime, getShortDate} from '../utils.js';
 
 const createTripList = (eventList) => {
   const days = [];

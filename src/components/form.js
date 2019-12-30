@@ -1,6 +1,6 @@
 import {generatePhotoList, generateDescription} from '../mock/destination-data.js';
 import {EVENT_DEFAULT, EventTypeProperties, MovingType, PlaceholderParticle, Destinations, OfferTypeOptions} from '../const.js';
-import * as util from '../util.js';
+import * as utils from '../utils.js';
 
 const createEventTypeItem = (eventType) => {
   const eventTypeCode = eventType.toLowerCase();
@@ -84,8 +84,8 @@ const createForm = (eventItem = EVENT_DEFAULT) => {
   const title = `${eventProperty.name} ${PlaceholderParticle[eventProperty.movingType]}`;
   const destination = eventItem.destination;
   const destinationList = Destinations.map((item) => `<option value="${item}"></option>`).join(`\n`);
-  const startDateTime = `${util.getDate(eventItem.start, `/`)} ${util.getTime(eventItem.start)}`;
-  const finishDateTime = `${util.getDate(eventItem.finish, `/`)} ${util.getTime(eventItem.finish)}`;
+  const startDateTime = `${utils.getDate(eventItem.start, `/`)} ${utils.getTime(eventItem.start)}`;
+  const finishDateTime = `${utils.getDate(eventItem.finish, `/`)} ${utils.getTime(eventItem.finish)}`;
 
   const editFormButtons = (
     `<input id="event-favorite-1" class="event__favorite-checkbox  visually-hidden" type="checkbox" name="event-favorite" ${eventItem.isFavorite ? `checked` : ``}>
