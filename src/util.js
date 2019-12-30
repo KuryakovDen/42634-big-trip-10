@@ -66,6 +66,19 @@ const createElement = (template) => {
   return newElement.firstChild;
 };
 
+const RenderPoition = {
+  BEFOREEND: `beforeend`,
+  AFTERBEGIN: `afterbegin`
+};
+
+const render = (container, element, place) => {
+  if (place === RenderPoition.AFTERBEGIN) {
+    container.prepend(element);
+  } else {
+    container.append(element);
+  }
+};
+
 export {
   getRandomNumber,
   getRandomElement,
@@ -84,5 +97,7 @@ export {
   getDateTime,
   formatDate,
   getShortDate,
-  createElement
+  createElement,
+  RenderPoition,
+  render
 };
