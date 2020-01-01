@@ -148,4 +148,4 @@ const createForm = (eventItem = EVENT_DEFAULT) => {
     </form>`);
 };
 
-export default createForm;
+export {createForm};

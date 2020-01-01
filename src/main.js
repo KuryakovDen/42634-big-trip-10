@@ -1,11 +1,11 @@
 import {createTripInfo} from './components/trip-info.js';
-import {createMenu} from './components/menu.js';
+import {MenuComponent} from './components/menu.js';
 import createFilter from './components/filter.js';
 import createSort from './components/sort.js';
 import {createTripList} from './components/trip-list.js';
 import generateEventList from './mock/event-data.js';
 import {menuItemList, filterItemList, sortItemList} from './const.js';
-import {render, RenderPoition} from './utils.js';
+import {render, RenderPosition} from './utils.js';
 
 const eventList = generateEventList();
 
@@ -14,14 +14,20 @@ const sumEvents = (events) => events.reduce((accum, current) => accum + current.
 
 const renderIndex = () => {
   const tripMainElement = document.querySelector(`.trip-main`);
-  const tripEventsElement = document.querySelector(`.trip-events h2`);
-  const tripInfoElement = tripMainElement.querySelector(`.trip-info`);
+  // const tripEventsElement = document.querySelector(`.trip-events h2`);
+  // const tripInfoElement = tripMainElement.querySelector(`.trip-info`);
   const tripControlElements = tripMainElement.querySelectorAll(`.trip-controls h2`);
 
-  render(tripInfoElement, createTripInfo(eventList), RenderPoition.AFTERBEGIN);
-  render(tripControlElements[0], createMenu(menuItemList), RenderPoition.AFTERBEGIN);
+  tripControlElements[0].classList.remove(`visually-hidden`);
+  tripControlElements[0].firstChild.textContent = null;
+
+  // render(tripInfoElement, createTripInfo(eventList), RenderPoition.AFTERBEGIN);
+
+  const menuComponent = new MenuComponent(menuItemList);
+  render(tripControlElements[0], menuComponent.getElement(), RenderPosition.BEFOREEND);
+
   // render(tripControlElements[1], createFilter(filterItemList), RenderPoition.AFTERBEGIN);
-  render(tripEventsElement, `${createSort(sortItemList)}\n${createTripList(eventList)}`, RenderPoition.AFTERBEGIN);
+  // render(tripEventsElement, `${createSort(sortItemList)}\n${createTripList(eventList)}`, RenderPoition.AFTERBEGIN);
 };
 
 renderIndex();

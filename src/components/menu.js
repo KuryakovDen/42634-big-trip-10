@@ -8,7 +8,7 @@ const createMenu = (menuItems) => {
   return `<nav class="trip-controls__trip-tabs  trip-tabs">${menuItemList}</nav>`;
 };
 
-export default class MenuComponent {
+class MenuComponent {
   constructor(menuPoints) {
     this._element = null;
     this._menuPoints = menuPoints;
@@ -31,4 +31,4 @@ export default class MenuComponent {
   }
 }
 
-export {createMenu};
+export {MenuComponent};

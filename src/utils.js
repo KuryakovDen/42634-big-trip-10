@@ -66,16 +66,19 @@ const createElement = (template) => {
   return newElement.firstChild;
 };
 
-const RenderPoition = {
+const RenderPosition = {
   BEFOREEND: `beforeend`,
   AFTERBEGIN: `afterbegin`
 };
 
 const render = (container, element, place) => {
-  if (place === RenderPoition.AFTERBEGIN) {
-    container.prepend(element);
-  } else {
-    container.append(element);
+  switch (place) {
+    case RenderPosition.AFTERBEGIN:
+      container.prepend(element);
+      break;
+    case RenderPosition.BEFOREEND:
+      container.append(element);
+      break;
   }
 };
 
@@ -98,6 +101,6 @@ export {
   formatDate,
   getShortDate,
   createElement,
-  RenderPoition,
+  RenderPosition,
   render
 };
