@@ -2,7 +2,7 @@ import {TripInfoComponent} from './components/trip-info.js';
 import {MenuComponent} from './components/menu.js';
 import {FilterComponent} from './components/filter.js';
 import {SortComponent} from './components/sort.js';
-import {EventComponent} from './components/event.js';
+// import {EventComponent} from './components/event.js';
 import generateEventList from './mock/event-data.js';
 import {menuItemList, filterItemList, sortItemList} from './const.js';
 import {render, RenderPosition} from './utils.js';
