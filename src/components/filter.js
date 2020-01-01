@@ -15,7 +15,7 @@ const createFilter = (filterItems) => {
     </form>`);
 };
 
-export default class FilterComponent {
+class FilterComponent {
   constructor(filters) {
     this._element = null;
     this._filters = filters;
@@ -38,4 +38,4 @@ export default class FilterComponent {
   }
 }
 
-export {createFilter};
+export {FilterComponent};
