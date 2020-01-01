@@ -91,24 +91,19 @@ const EventTypeProperties = {
 };
 
 const Destinations = [
-  `Vein`,
   `Minsk`,
   `London`,
-  `Birmingham`,
-  `Budapest`,
+  `Kogalym`,
   `Berlin`,
   `Barcelona`,
   `Rome`,
   `Milan`,
-  `Warsaw`,
   `Moscow`,
   `St. Petersburg`,
-  `Perm`,
-  `Derevnya`,
+  `Biysk`,
   `Istanbul`,
   `Kiev`,
-  `Kharkov`,
-  `Odessa`,
+  `Amsterdam`,
   `Paris`,
   `Prague`,
   `Sydney`

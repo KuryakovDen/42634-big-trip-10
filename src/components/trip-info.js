@@ -14,7 +14,7 @@ const createTripInfo = (eventList) => {
     </div>`);
 };
 
-export default class TripInfoComponent {
+class TripInfoComponent {
   constructor(events) {
     this._element = null;
     this._events = events;
@@ -37,4 +37,4 @@ export default class TripInfoComponent {
   }
 }
 
-export {createTripInfo};
+export {TripInfoComponent};

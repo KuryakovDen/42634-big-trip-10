@@ -1,8 +1,8 @@
-import {createTripInfo} from './components/trip-info.js';
+import {TripInfoComponent} from './components/trip-info.js';
 import {MenuComponent} from './components/menu.js';
 import {FilterComponent} from './components/filter.js';
 import {SortComponent} from './components/sort.js';
-import {createTripList} from './components/trip-list.js';
+// import {createTripList} from './components/trip-list.js';
 import generateEventList from './mock/event-data.js';
 import {menuItemList, filterItemList, sortItemList} from './const.js';
 import {render, RenderPosition} from './utils.js';
@@ -19,11 +19,12 @@ const renderApplication = () => {
 
   tripCost.innerText = sumEvents(eventList);
 
-  // const tripInfoElement = tripMainElement.querySelector(`.trip-info`);
+  const tripInfoElement = tripMainElement.querySelector(`.trip-info`);
   const tripControlElements = tripMainElement.querySelectorAll(`.trip-controls h2`);
 
   // EventList
-  // render(tripInfoElement, createTripInfo(eventList), RenderPosition.AFTERBEGIN);
+  const tripInfoComponent = new TripInfoComponent(eventList);
+  render(tripInfoElement, tripInfoComponent.getElement(), RenderPosition.AFTERBEGIN);
 
   // Menu
   tripControlElements[0].classList.remove(`visually-hidden`);
@@ -40,6 +41,9 @@ const renderApplication = () => {
   render(tripControlElements[1], filterComponent.getElement(), RenderPosition.AFTERBEGIN);
 
   // Sorting
+  tripEventsElement.classList.remove(`visually-hidden`);
+  tripEventsElement.lastChild.textContent = null;
+
   const sortComponent = new SortComponent(sortItemList);
   render(tripEventsElement, sortComponent.getElement(), RenderPosition.AFTERBEGIN);
 };
