@@ -1,4 +1,4 @@
-import createForm from './form.js';
+import {createForm} from './form.js';
 import {EventTypeProperties, PlaceholderParticle, OfferTypeOptions} from '../const.js';
 import {getDaysCount, formatDate, getDateTime, getTime, getShortDate, createElement} from '../utils.js';
 
@@ -106,7 +106,7 @@ const createTripList = (eventList) => {
   return `<ul class="trip-days">${days.join(`\n`)}</ul>`;
 };
 
-export default class TripListComponent {
+class EventComponent {
   constructor(events) {
     this._element = null;
     this._events = events;
@@ -129,4 +129,4 @@ export default class TripListComponent {
   }
 }
 
-export {createTripList};
+export {EventComponent};

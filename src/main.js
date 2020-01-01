@@ -2,7 +2,7 @@ import {TripInfoComponent} from './components/trip-info.js';
 import {MenuComponent} from './components/menu.js';
 import {FilterComponent} from './components/filter.js';
 import {SortComponent} from './components/sort.js';
-// import {createTripList} from './components/trip-list.js';
+import {EventComponent} from './components/event.js';
 import generateEventList from './mock/event-data.js';
 import {menuItemList, filterItemList, sortItemList} from './const.js';
 import {render, RenderPosition} from './utils.js';
@@ -22,7 +22,7 @@ const renderApplication = () => {
   const tripInfoElement = tripMainElement.querySelector(`.trip-info`);
   const tripControlElements = tripMainElement.querySelectorAll(`.trip-controls h2`);
 
-  // EventList
+  // TripInfo
   const tripInfoComponent = new TripInfoComponent(eventList);
   render(tripInfoElement, tripInfoComponent.getElement(), RenderPosition.AFTERBEGIN);
 
@@ -46,6 +46,9 @@ const renderApplication = () => {
 
   const sortComponent = new SortComponent(sortItemList);
   render(tripEventsElement, sortComponent.getElement(), RenderPosition.AFTERBEGIN);
+
+  // Event
+
 };
 
 renderApplication();
