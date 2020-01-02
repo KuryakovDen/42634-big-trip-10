@@ -91,24 +91,19 @@ const EventTypeProperties = {
 };
 
 const Destinations = [
-  `Vein`,
   `Minsk`,
   `London`,
-  `Birmingham`,
-  `Budapest`,
+  `Kogalym`,
   `Berlin`,
   `Barcelona`,
   `Rome`,
   `Milan`,
-  `Warsaw`,
   `Moscow`,
   `St. Petersburg`,
-  `Perm`,
-  `Derevnya`,
+  `Biysk`,
   `Istanbul`,
   `Kiev`,
-  `Kharkov`,
-  `Odessa`,
+  `Amsterdam`,
   `Paris`,
   `Prague`,
   `Sydney`
@@ -192,9 +187,11 @@ const filterItemList = [
 ];
 
 const sortItemList = [
+  {name: `Day`, isChecked: false, direction: true},
   {name: `Event`, isChecked: true, direction: false},
   {name: `Time`, isChecked: false, direction: true},
-  {name: `Price`, isChecked: false, direction: true}
+  {name: `Price`, isChecked: false, direction: true},
+  {name: `Offers`, isChecked: false, direction: true}
 ];
 
 export {

@@ -1,32 +1,56 @@
-import createTripInfo from './components/trip-info.js';
-import createMenu from './components/menu.js';
-import createFilter from './components/filter.js';
-import createSort from './components/sort.js';
-import createTripList from './components/trip-list.js';
+import {TripInfoComponent} from './components/trip-info.js';
+import {MenuComponent} from './components/menu.js';
+import {FilterComponent} from './components/filter.js';
+import {SortComponent} from './components/sort.js';
+import {DayListComponent} from './components/day-list.js';
 import generateEventList from './mock/event-data.js';
 import {menuItemList, filterItemList, sortItemList} from './const.js';
+import {render, RenderPosition} from './utils.js';
 
 const eventList = generateEventList();
-
-const render = (container, html, position = `beforeend`) => {
-  container.insertAdjacentHTML(position, html);
-};
 
 const sumOffers = (offerList) => offerList.reduce((accum, current) => accum + current.isChecked * current.cost, 0);
 const sumEvents = (events) => events.reduce((accum, current) => accum + current.cost + sumOffers(current.offers), 0);
 
-const renderIndex = () => {
+const renderApplication = () => {
   const tripMainElement = document.querySelector(`.trip-main`);
   const tripEventsElement = document.querySelector(`.trip-events h2`);
+  const tripCost = document.querySelector(`.trip-info__cost-value`);
+
+  tripCost.innerText = sumEvents(eventList);
+
   const tripInfoElement = tripMainElement.querySelector(`.trip-info`);
   const tripControlElements = tripMainElement.querySelectorAll(`.trip-controls h2`);
 
-  render(tripInfoElement, createTripInfo(eventList), `afterbegin`);
-  render(tripControlElements[0], createMenu(menuItemList), `afterend`);
-  render(tripControlElements[1], createFilter(filterItemList), `afterend`);
-  render(tripEventsElement, `${createSort(sortItemList)}\n${createTripList(eventList)}`, `afterend`);
+  // TripInfo
+  const tripInfoComponent = new TripInfoComponent(eventList);
+  render(tripInfoElement, tripInfoComponent.getElement(), RenderPosition.AFTERBEGIN);
+
+  // Menu
+  tripControlElements[0].classList.remove(`visually-hidden`);
+  tripControlElements[0].firstChild.textContent = null;
+
+  const menuComponent = new MenuComponent(menuItemList);
+  render(tripControlElements[0], menuComponent.getElement(), RenderPosition.BEFOREEND);
+
+  // Filter
+  tripControlElements[1].classList.remove(`visually-hidden`);
+  tripControlElements[1].firstChild.textContent = null;
+
+  const filterComponent = new FilterComponent(filterItemList);
+  render(tripControlElements[1], filterComponent.getElement(), RenderPosition.AFTERBEGIN);
+
+  // Sorting
+  tripEventsElement.classList.remove(`visually-hidden`);
+  tripEventsElement.lastChild.textContent = null;
+
+  const sortComponent = new SortComponent(sortItemList);
+  render(tripEventsElement, sortComponent.getElement(), RenderPosition.AFTERBEGIN);
+
+  // DayList
+  const dayListComponent = new DayListComponent(eventList);
+  render(tripEventsElement, dayListComponent.getElement(), RenderPosition.BEFOREEND);
+
 };
 
-renderIndex();
-
-document.querySelector(`.trip-info__cost-value`).innerText = sumEvents(eventList);
+renderApplication();

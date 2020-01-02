@@ -1,47 +1,6 @@
-import createForm from './form.js';
+import {createForm} from './event-edit.js';
 import {EventTypeProperties, PlaceholderParticle, OfferTypeOptions} from '../const.js';
-import {getDaysCount, formatDate, getDateTime, getTime, getShortDate} from '../util.js';
-
-const createTripList = (eventList) => {
-  const days = [];
-  let dayCounter = 1;
-  let dayDate = eventList[0].start;
-  let dayEvents = [eventList[0]];
-  const formEvent = eventList[0];
-
-  for (let i = 1; i < eventList.length; i++) {
-    const daysCount = getDaysCount(dayDate, eventList[i].start);
-
-    if (daysCount === 0) {
-      dayEvents.push(eventList[i]);
-    }
-
-    days.push(createTripDay(dayDate, dayCounter, createEventListHtml(dayEvents, formEvent)));
-    dayCounter += daysCount;
-    dayDate = eventList[i].start;
-    dayEvents = [eventList[i]];
-  }
-
-  if (dayEvents.length) {
-    days.push(createTripDay(dayDate, dayCounter, createEventListHtml(dayEvents)));
-  }
-
-  return `<ul class="trip-days">${days.join(`\n`)}</ul>`;
-};
-
-const createTripDay = (date, dayCounter, eventsHtml) => {
-  const dateText = getShortDate(date);
-  const dateTime = getDateTime(date);
-
-  return (
-    `<li class="trip-days__item  day">
-      <div class="day__info">
-        <span class="day__counter">${dayCounter}</span>
-        <time class="day__date" datetime="${dateTime}">${dateText}</time>
-      </div>
-      ${eventsHtml}
-    </li>`);
-};
+import {formatDate, getDateTime, getTime, createElement} from '../utils.js';
 
 const createOffersHtml = (offerData) => {
   const selected = offerData.filter((item) => item.isChecked).slice(0, 3);
@@ -99,11 +58,27 @@ const createEventHtml = (eventData, isForm = false) => {
     </li>`);
 };
 
-const createEventListHtml = (eventList, formEvent) => {
-  return (
-    `<ul class="trip-events__list">
-      ${eventList.map((item) => createEventHtml(item, item === formEvent)).join(`\n`)}
-    </ul>`);
-};
+class EventComponent {
+  constructor(events) {
+    this._element = null;
+    this._events = events;
+  }
 
-export default createTripList;
+  getTemplate() {
+    return createEventHtml(this._events);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
+
+export {EventComponent};
