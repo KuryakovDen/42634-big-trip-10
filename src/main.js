@@ -47,7 +47,7 @@ const renderApplication = () => {
   tripEventsElement.lastChild.textContent = null;
 
   const sortComponent = new SortComponent(sortItemList);
-  //render(tripEventsElement, sortComponent.getElement(), RenderPosition.AFTERBEGIN);
+  // render(tripEventsElement, sortComponent.getElement(), RenderPosition.AFTERBEGIN);
 
   // Event
   const dayListComponent = new DayListComponent(eventList);
