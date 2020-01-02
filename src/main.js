@@ -49,7 +49,7 @@ const renderApplication = () => {
   const sortComponent = new SortComponent(sortItemList);
   render(tripEventsElement, sortComponent.getElement(), RenderPosition.AFTERBEGIN);
 
-  // Event
+  // DayList
   const dayListComponent = new DayListComponent(eventList);
   render(tripEventsElement, dayListComponent.getElement(), RenderPosition.BEFOREEND);
 

@@ -2,7 +2,7 @@ import {createElement} from '../utils.js';
 
 const createFilterItem = (filterItem) => (
   `<div class="trip-filters__filter">
-    <input id="filter-${filterItem.name.toLowerCase()}" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="${name.toLowerCase()}" ${filterItem.isChecked ? `checked` : ``}>
+    <input id="filter-${filterItem.name.toLowerCase()}" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="${name.toLowerCase()}" ${filterItem.checked ? `checked` : ``}>
     <label class="trip-filters__filter-label" for="filter-${filterItem.name.toLowerCase()}">${filterItem.name}</label>
   </div>`);
 
