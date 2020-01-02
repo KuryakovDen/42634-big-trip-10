@@ -1,7 +1,7 @@
 import {createElement} from '../utils.js';
 
 class NoPointsComponent {
-  constructor(message) {
+  constructor(message = `Click New Event to create your first point`) {
     this._element = null;
     this._message = message;
   }
