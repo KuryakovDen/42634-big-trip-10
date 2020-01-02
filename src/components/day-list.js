@@ -16,7 +16,7 @@ class DayListComponent {
       this._element = createElement(this.getTemplate());
 
       splitEventsByDay(this._eventList).forEach((item) => {
-        render(this._element, new DayComponent(item), RenderPosition.BEFOREEND);
+        render(this._element, new DayComponent(item).getElement(), RenderPosition.BEFOREEND);
       });
     }
 

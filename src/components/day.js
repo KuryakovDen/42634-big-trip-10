@@ -4,12 +4,12 @@ import {EventListComponent} from './event-list.js';
 class DayComponent {
   constructor(dayItem) {
     this._element = null;
-    this._day = dayItem;
+    this._dayItem = dayItem;
   }
 
   getTemplate() {
-    const dateText = getShortDate(this._day.dayDate);
-    const dateTime = getDateTime(this._day.dayDate);
+    const dateText = getShortDate(this._dayItem.dayDate);
+    const dateTime = getDateTime(this._dayItem.dayDate);
 
     return (
       `<li class="trip-days__item  day">
