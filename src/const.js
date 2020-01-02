@@ -187,9 +187,11 @@ const filterItemList = [
 ];
 
 const sortItemList = [
+  {name: `Day`, isChecked: false, direction: true},
   {name: `Event`, isChecked: true, direction: false},
   {name: `Time`, isChecked: false, direction: true},
-  {name: `Price`, isChecked: false, direction: true}
+  {name: `Price`, isChecked: false, direction: true},
+  {name: `Offers`, isChecked: false, direction: true}
 ];
 
 export {
