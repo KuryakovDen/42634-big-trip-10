@@ -1,9 +1,10 @@
-import {getDateTime, getShortDate, createElement} from '../utils.js';
+import {getDateTime, getShortDate, createElement, render, RenderPosition} from '../utils.js';
+import {EventListComponent} from './event-list.js';
 
 class DayComponent {
-  constructor(day) {
+  constructor(dayItem) {
     this._element = null;
-    this._day = day;
+    this._day = dayItem;
   }
 
   getTemplate() {
@@ -13,7 +14,7 @@ class DayComponent {
     return (
       `<li class="trip-days__item  day">
         <div class="day__info">
-          <span class="day__counter">${this._day.dayCounter}</span>
+          <span class="day__counter">${this._dayItem.dayCounter}</span>
           <time class="day__date" datetime="${dateTime}">${dateText}</time>
         </div>
       </li>`);
@@ -22,6 +23,8 @@ class DayComponent {
   getElement() {
     if (!this._element) {
       this._element = createElement(this.getTemplate());
+
+      render(this._element, new EventListComponent(this._dayItem.dayEvents).getElement(), RenderPosition.BEFOREEND);
     }
 
     return this._element;

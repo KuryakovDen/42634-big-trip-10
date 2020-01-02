@@ -1,4 +1,5 @@
-import {createElement} from '../utils.js';
+import {createElement, splitEventsByDay, render, RenderPosition} from '../utils.js';
+import {DayComponent} from './day.js';
 
 class DayListComponent {
   constructor(eventList) {
@@ -13,6 +14,10 @@ class DayListComponent {
   getElement() {
     if (!this._element) {
       this._element = createElement(this.getTemplate());
+
+      splitEventsByDay(this._eventList).forEach((item) => {
+        render(this._element, new DayComponent(item), RenderPosition.BEFOREEND);
+      });
     }
 
     return this._element;

@@ -1,4 +1,4 @@
-import {createForm} from './form.js';
+import {createForm} from './event-edit.js';
 import {EventTypeProperties, PlaceholderParticle, OfferTypeOptions} from '../const.js';
 import {formatDate, getDateTime, getTime, createElement} from '../utils.js';
 
