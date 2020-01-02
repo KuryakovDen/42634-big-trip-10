@@ -3,6 +3,7 @@ import {MenuComponent} from './components/menu.js';
 import {FilterComponent} from './components/filter.js';
 import {SortComponent} from './components/sort.js';
 import {DayListComponent} from './components/day-list.js';
+import {NoPointsComponent} from './components/no-points.js';
 import generateEventList from './mock/event-data.js';
 import {menuItemList, filterItemList, sortItemList} from './const.js';
 import {render, RenderPosition} from './utils.js';
@@ -40,17 +41,21 @@ const renderApplication = () => {
   const filterComponent = new FilterComponent(filterItemList);
   render(tripControlElements[1], filterComponent.getElement(), RenderPosition.AFTERBEGIN);
 
-  // Sorting
   tripEventsElement.classList.remove(`visually-hidden`);
   tripEventsElement.lastChild.textContent = null;
 
-  const sortComponent = new SortComponent(sortItemList);
-  render(tripEventsElement, sortComponent.getElement(), RenderPosition.AFTERBEGIN);
+  if (eventList.length) {
+    // Sorting
+    const sortComponent = new SortComponent(sortItemList);
+    render(tripEventsElement, sortComponent.getElement(), RenderPosition.AFTERBEGIN);
 
-  // DayList
-  const dayListComponent = new DayListComponent(eventList);
-  render(tripEventsElement, dayListComponent.getElement(), RenderPosition.BEFOREEND);
-
+    // DayList
+    const dayListComponent = new DayListComponent(eventList);
+    render(tripEventsElement, dayListComponent.getElement(), RenderPosition.BEFOREEND);
+  } else {
+    const noPointsComponent = new NoPointsComponent();
+    render(tripEventsElement, noPointsComponent.getElement(), RenderPosition.BEFOREEND);
+  }
 };
 
 renderApplication();
