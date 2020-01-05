@@ -1,4 +1,4 @@
-import {createElement} from '../utils.js';
+import {AbstractComponent} from '../components/abstract.js';
 
 const createSortItem = (sortItem) => {
   const name = sortItem.name.toLowerCase();
@@ -24,26 +24,14 @@ const createSort = (sortItems) => {
     </form>`);
 };
 
-class SortComponent {
+class SortComponent extends AbstractComponent {
   constructor(sortPoints) {
-    this._element = null;
+    super();
     this._sortPoints = sortPoints;
   }
 
   getTemplate() {
     return createSort(this._sortPoints);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
 

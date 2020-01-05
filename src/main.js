@@ -47,7 +47,7 @@ const renderApplication = () => {
   if (eventList.length) {
     // Sorting
     const sortComponent = new SortComponent(sortItemList);
-    render(tripEventsElement, sortComponent.getElement(), RenderPosition.AFTERBEGIN);
+    render(tripEventsElement, sortComponent, RenderPosition.AFTERBEGIN);
 
     // DayList
     const dayListComponent = new DayListComponent(eventList);
