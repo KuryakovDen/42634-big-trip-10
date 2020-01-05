@@ -1,4 +1,4 @@
-import {AbstractComponent} from './abstract.js';
+import AbstractComponent from './abstract.js';
 
 const createMenuItem = (menuItem) => `
 <a class="trip-tabs__btn ${menuItem.active ? `  trip-tabs__btn--active` : ``}" href="${menuItem.href}">${menuItem.name}</a>`;
@@ -8,7 +8,7 @@ const createMenu = (menuItems) => {
   return `<nav class="trip-controls__trip-tabs  trip-tabs">${menuItemList}</nav>`;
 };
 
-class MenuComponent extends AbstractComponent {
+export default class MenuComponent extends AbstractComponent {
   constructor(menuPoints) {
     super();
     this._menuPoints = menuPoints;
@@ -18,5 +18,3 @@ class MenuComponent extends AbstractComponent {
     return createMenu(this._menuPoints);
   }
 }
-
-export {MenuComponent};

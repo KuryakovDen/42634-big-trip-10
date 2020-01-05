@@ -1,9 +1,9 @@
 import {createElement, render, RenderPosition} from '../utils/common.js';
 import {getDateTime, getShortDate} from '../utils/date.js';
-import {EventListComponent} from './event-list.js';
-import {AbstractComponent} from './abstract.js';
+import EventListComponent from './event-list.js';
+import AbstractComponent from './abstract.js';
 
-class DayComponent extends AbstractComponent {
+export default class DayComponent extends AbstractComponent {
   constructor(dayItem) {
     super();
     this._dayItem = dayItem;
@@ -32,5 +32,3 @@ class DayComponent extends AbstractComponent {
     return this._element;
   }
 }
-
-export {DayComponent};

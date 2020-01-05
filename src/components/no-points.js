@@ -1,6 +1,6 @@
-import {AbstractComponent} from './abstract.js';
+import AbstractComponent from './abstract.js';
 
-class NoPointsComponent extends AbstractComponent {
+export default class NoPointsComponent extends AbstractComponent {
   constructor(message = `Click New Event to create your first point`) {
     super();
     this._message = message;
@@ -10,5 +10,3 @@ class NoPointsComponent extends AbstractComponent {
     return `<p class="trip-events__msg">${this._message}</p>`;
   }
 }
-
-export {NoPointsComponent};

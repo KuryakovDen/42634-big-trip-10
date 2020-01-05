@@ -1,9 +1,9 @@
-import {TripInfoComponent} from './components/trip-info.js';
-import {MenuComponent} from './components/menu.js';
-import {FilterComponent} from './components/filter.js';
-import {SortComponent} from './components/sort.js';
-import {DayListComponent} from './components/day-list.js';
-import {NoPointsComponent} from './components/no-points.js';
+import TripInfoComponent from './components/trip-info.js';
+import MenuComponent from './components/menu.js';
+import FilterComponent from './components/filter.js';
+import SortComponent from './components/sort.js';
+import DayListComponent from './components/day-list.js';
+import NoPointsComponent from './components/no-points.js';
 import generateEventList from './mock/event-data.js';
 import {menuItemList, filterItemList, sortItemList} from './const.js';
 import {render, RenderPosition} from './utils/common.js';

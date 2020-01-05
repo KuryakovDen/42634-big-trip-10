@@ -1,9 +1,9 @@
-import {createElement, render, RenderPosition} from '../utils/common.js';
-import {EventComponent} from './event.js';
-import {EventEditComponent} from './event-edit.js';
-import {AbstractComponent} from './abstract.js';
+import {createElement, render, RenderPosition, replace} from '../utils/common.js';
+import EventComponent from './event.js';
+import EventEditComponent from './event-edit.js';
+import AbstractComponent from './abstract.js';
 
-class EventListComponent extends AbstractComponent {
+export default class EventListComponent extends AbstractComponent {
   constructor(eventList) {
     super();
     this._eventList = eventList;
@@ -18,8 +18,8 @@ class EventListComponent extends AbstractComponent {
       this._element = createElement(this.getTemplate());
 
       this._eventList.forEach((item) => {
-        const eventToEdit = () => this._element.replaceChild(eventEditElement, eventElement);
-        const editToEvent = () => this._element.replaceChild(eventElement, eventEditElement);
+        const eventToEdit = () => replace(eventEditElement, eventElement);
+        const editToEvent = () => replace(eventElement, eventEditElement);
         const documentKeyDownHandler = (evt) => {
           const isEscKey = evt.key === `Escape` || evt.key === `Esc`;
 
@@ -57,5 +57,3 @@ class EventListComponent extends AbstractComponent {
     return this._element;
   }
 }
-
-export {EventListComponent};

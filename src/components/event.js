@@ -1,7 +1,7 @@
 import {createForm} from './event-edit.js';
 import {EventTypeProperties, PlaceholderParticle, OfferTypeOptions} from '../const.js';
 import {formatDate, getDateTime, getTime} from '../utils/date.js';
-import {AbstractComponent} from './abstract.js';
+import AbstractComponent from './abstract.js';
 
 const createOffersHtml = (offerData) => {
   const selected = offerData.filter((item) => item.isChecked).slice(0, 3);
@@ -59,7 +59,7 @@ const createEventHtml = (eventData, isForm = false) => {
     </li>`);
 };
 
-class EventComponent extends AbstractComponent {
+export default class EventComponent extends AbstractComponent {
   constructor(events) {
     super();
     this._events = events;
@@ -69,5 +69,3 @@ class EventComponent extends AbstractComponent {
     return createEventHtml(this._events);
   }
 }
-
-export {EventComponent};
