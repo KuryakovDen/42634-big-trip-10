@@ -1,10 +1,11 @@
 import {createElement, render, RenderPosition} from '../utils/common.js';
 import {getDateTime, getShortDate} from '../utils/date.js';
 import {EventListComponent} from './event-list.js';
+import {AbstractComponent} from './abstract.js';
 
-class DayComponent {
+class DayComponent extends AbstractComponent {
   constructor(dayItem) {
-    this._element = null;
+    super();
     this._dayItem = dayItem;
   }
 
@@ -29,10 +30,6 @@ class DayComponent {
     }
 
     return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
 

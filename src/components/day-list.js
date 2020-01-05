@@ -1,9 +1,10 @@
 import {createElement, splitEventsByDay, render, RenderPosition} from '../utils/common.js';
 import {DayComponent} from './day.js';
+import {AbstractComponent} from './abstract.js';
 
-class DayListComponent {
+class DayListComponent extends AbstractComponent {
   constructor(eventList) {
-    this._element = null;
+    super();
     this._eventList = eventList;
   }
 
@@ -21,10 +22,6 @@ class DayListComponent {
     }
 
     return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
 
