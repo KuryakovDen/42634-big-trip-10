@@ -6,7 +6,7 @@ const getDateTitle = (eventList) => {
 };
 
 const createTripInfo = (eventList) => {
-  const shortTrip = eventList.length > 2 ? [eventList[0].destination, `...`, eventList[eventList.length - 1].destination] : [eventList[0].destination, eventList[1].destination];
+  const shortTrip = eventList.length > 3 ? [eventList[0].destination, `...`, eventList[eventList.length - 1].destination] : [eventList[0].destination, eventList[1].destination];
 
   return (
     `<div class="trip-info__main">

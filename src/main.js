@@ -25,7 +25,7 @@ const renderApplication = () => {
 
   // TripInfo
   const tripInfoComponent = new TripInfoComponent(eventList);
-  render(tripInfoElement, tripInfoComponent, RenderPosition.AFTERBEGIN);
+  render(tripInfoElement, tripInfoComponent.getElement(), RenderPosition.AFTERBEGIN);
 
   // Menu
   tripControlElements[0].classList.remove(`visually-hidden`);
@@ -47,7 +47,7 @@ const renderApplication = () => {
   if (eventList.length) {
     // Sorting
     const sortComponent = new SortComponent(sortItemList);
-    render(tripEventsElement, sortComponent, RenderPosition.AFTERBEGIN);
+    render(tripEventsElement, sortComponent.getElement(), RenderPosition.AFTERBEGIN);
 
     // DayList
     const dayListComponent = new DayListComponent(eventList);

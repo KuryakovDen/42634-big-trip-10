@@ -13,7 +13,7 @@ class AbstractComponent {
     throw new Error(`Abstract method not implemented: getTemplate!`);
   }
 
-  getElemet() {
+  getElement() {
     if (!this._element) {
       this._element = createElement(this.getTemplate());
     }
