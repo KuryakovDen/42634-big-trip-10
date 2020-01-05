@@ -25,7 +25,7 @@ const renderApplication = () => {
 
   // TripInfo
   const tripInfoComponent = new TripInfoComponent(eventList);
-  render(tripInfoElement, tripInfoComponent.getElement(), RenderPosition.AFTERBEGIN);
+  render(tripInfoElement, tripInfoComponent, RenderPosition.AFTERBEGIN);
 
   // Menu
   tripControlElements[0].classList.remove(`visually-hidden`);

@@ -1,4 +1,5 @@
-import {getShortDate, createElement} from '../utils.js';
+import {getShortDate} from '../utils.js';
+import {AbstractComponent} from '../components/abstract.js';
 
 const getDateTitle = (eventList) => {
   return `${getShortDate(eventList[0].start)}&nbsp;&mdash;&nbsp;${getShortDate(eventList[eventList.length - 1].finish)}`;
@@ -14,26 +15,14 @@ const createTripInfo = (eventList) => {
     </div>`);
 };
 
-class TripInfoComponent {
+class TripInfoComponent extends AbstractComponent {
   constructor(events) {
-    this._element = null;
+    super();
     this._events = events;
   }
 
   getTemplate() {
     return createTripInfo(this._events);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
 

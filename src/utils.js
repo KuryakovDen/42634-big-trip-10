@@ -82,6 +82,23 @@ const render = (container, element, place) => {
   }
 };
 
+const replace = (oldComponent, newComponent) => {
+  const parentElement = oldComponent.getElement().parentElement();
+  const oldElement = oldComponent.getElement();
+  const newElement = newComponent.getElement();
+
+  const isExistElements = !!(parentElement && newElement && oldElement);
+
+  if (isExistElements && parentElement.contains(oldElement)) {
+    parentElement.replaceChild(oldElement, newElement);
+  }
+};
+
+const remove = (component) => {
+  component.getElement().remove();
+  component.removeElement();
+};
+
 const splitEventsByDay = (eventList) => {
   const days = [];
   let dayCounter = 1;
@@ -130,5 +147,7 @@ export {
   createElement,
   RenderPosition,
   render,
+  replace,
+  remove,
   splitEventsByDay
 };
