@@ -1,6 +1,7 @@
 import {generatePhotoList, generateDescription} from '../mock/destination-data.js';
 import {EVENT_DEFAULT, EventTypeProperties, MovingType, PlaceholderParticle, Destinations, OfferTypeOptions} from '../const.js';
-import {createElement, getDate, getTime} from '../utils.js';
+import {createElement} from '../utils/common.js';
+import {getDate, getTime} from '../utils/date.js';
 
 const createEventTypeItem = (eventType) => {
   const eventTypeCode = eventType.toLowerCase();

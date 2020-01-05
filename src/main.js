@@ -6,7 +6,7 @@ import {DayListComponent} from './components/day-list.js';
 import {NoPointsComponent} from './components/no-points.js';
 import generateEventList from './mock/event-data.js';
 import {menuItemList, filterItemList, sortItemList} from './const.js';
-import {render, RenderPosition} from './utils.js';
+import {render, RenderPosition} from './utils/common.js';
 
 const eventList = generateEventList();
 

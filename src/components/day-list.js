@@ -1,4 +1,4 @@
-import {createElement, splitEventsByDay, render, RenderPosition} from '../utils.js';
+import {createElement, splitEventsByDay, render, RenderPosition} from '../utils/common.js';
 import {DayComponent} from './day.js';
 
 class DayListComponent {

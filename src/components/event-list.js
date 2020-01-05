@@ -1,4 +1,4 @@
-import {createElement, render, RenderPosition} from '../utils.js';
+import {createElement, render, RenderPosition} from '../utils/common.js';
 import {EventComponent} from './event.js';
 import {EventEditComponent} from './event-edit.js';
 

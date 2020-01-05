@@ -1,4 +1,4 @@
-import {getShortDate} from '../utils.js';
+import {getShortDate} from '../utils/date.js';
 import {AbstractComponent} from '../components/abstract.js';
 
 const getDateTitle = (eventList) => {

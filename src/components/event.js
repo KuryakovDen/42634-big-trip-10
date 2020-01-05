@@ -1,6 +1,7 @@
 import {createForm} from './event-edit.js';
 import {EventTypeProperties, PlaceholderParticle, OfferTypeOptions} from '../const.js';
-import {formatDate, getDateTime, getTime, createElement} from '../utils.js';
+import {createElement} from '../utils/common.js';
+import {formatDate, getDateTime, getTime} from '../utils/date.js';
 
 const createOffersHtml = (offerData) => {
   const selected = offerData.filter((item) => item.isChecked).slice(0, 3);

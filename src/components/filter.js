@@ -1,4 +1,4 @@
-import {createElement} from '../utils.js';
+import {createElement} from '../utils/common.js';
 
 const createFilterItem = (filterItem) => (
   `<div class="trip-filters__filter">

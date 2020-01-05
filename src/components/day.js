@@ -1,4 +1,5 @@
-import {getDateTime, getShortDate, createElement, render, RenderPosition} from '../utils.js';
+import {createElement, render, RenderPosition} from '../utils/common.js';
+import {getDateTime, getShortDate} from '../utils/date.js';
 import {EventListComponent} from './event-list.js';
 
 class DayComponent {

@@ -1,4 +1,4 @@
-import {createElement} from '../utils.js';
+import {createElement} from '../utils/common.js';
 
 class NoPointsComponent {
   constructor(message = `Click New Event to create your first point`) {

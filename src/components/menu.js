@@ -1,4 +1,4 @@
-import {createElement} from '../utils.js';
+import {createElement} from '../utils/common.js';
 
 const createMenuItem = (menuItem) => `
 <a class="trip-tabs__btn ${menuItem.active ? `  trip-tabs__btn--active` : ``}" href="${menuItem.href}">${menuItem.name}</a>`;
