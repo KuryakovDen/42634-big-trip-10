@@ -1,10 +1,11 @@
 import {createElement, render, RenderPosition} from '../utils/common.js';
 import {EventComponent} from './event.js';
 import {EventEditComponent} from './event-edit.js';
+import {AbstractComponent} from './abstract.js';
 
-class EventListComponent {
+class EventListComponent extends AbstractComponent {
   constructor(eventList) {
-    this._element = null;
+    super();
     this._eventList = eventList;
   }
 
@@ -54,10 +55,6 @@ class EventListComponent {
     }
 
     return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
 

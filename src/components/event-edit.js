@@ -1,7 +1,7 @@
 import {generatePhotoList, generateDescription} from '../mock/destination-data.js';
 import {EVENT_DEFAULT, EventTypeProperties, MovingType, PlaceholderParticle, Destinations, OfferTypeOptions} from '../const.js';
-import {createElement} from '../utils/common.js';
 import {getDate, getTime} from '../utils/date.js';
+import {AbstractComponent} from './abstract.js';
 
 const createEventTypeItem = (eventType) => {
   const eventTypeCode = eventType.toLowerCase();
@@ -149,26 +149,14 @@ const createForm = (eventItem = EVENT_DEFAULT) => {
     </form>`);
 };
 
-class EventEditComponent {
+class EventEditComponent extends AbstractComponent {
   constructor(eventItem) {
-    this._element = null;
+    super();
     this._eventItem = eventItem;
   }
 
   getTemplate() {
     return createForm(this._eventItem);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
 
