@@ -1,5 +1,5 @@
 import {createElement, RenderPosition} from '../utils/common.js';
-import {render} from '../utils/render.js';
+import {render, replace} from '../utils/render.js';
 import EventComponent from './event.js';
 import EventEditComponent from './event-edit.js';
 import AbstractComponent from './abstract.js';
@@ -19,8 +19,8 @@ export default class EventListComponent extends AbstractComponent {
       this._element = createElement(this.getTemplate());
 
       this._eventList.forEach((item) => {
-        const eventToEdit = () => this._element.replaceChild(eventEditElement, eventElement);
-        const editToEvent = () => this._element.replaceChild(eventElement, eventEditElement);
+        const eventToEdit = () => replace(eventEditElement, eventElement);
+        const editToEvent = () => replace(eventElement, eventEditElement);
         const documentKeyDownHandler = (evt) => {
           const isEscKey = evt.key === `Escape` || evt.key === `Esc`;
 
@@ -30,10 +30,11 @@ export default class EventListComponent extends AbstractComponent {
           }
         };
 
-        const eventElement = new EventComponent(item).getElement();
-        const eventEditElement = new EventEditComponent(item).getElement();
-        const eventRollupButton = eventElement.querySelector(`.event__rollup-btn`);
-        const eventEditRollupButton = eventEditElement.querySelector(`.event__rollup-btn`);
+        const eventElement = new EventComponent(item);
+        const eventEditElement = new EventEditComponent(item);
+
+        const eventRollupButton = eventElement.getElement().querySelector(`.event__rollup-btn`);
+        const eventEditRollupButton = eventEditElement.getElement().querySelector(`.event__rollup-btn`);
 
         eventRollupButton.addEventListener(`click`, () => {
           eventToEdit();
@@ -45,7 +46,7 @@ export default class EventListComponent extends AbstractComponent {
           document.removeEventListener(`keydown`, documentKeyDownHandler);
         });
 
-        eventEditElement.addEventListener(`submit`, (evt) => {
+        eventEditElement.getElement().addEventListener(`submit`, (evt) => {
           evt.preventDefault();
           editToEvent();
           document.removeEventListener(`keydown`, documentKeyDownHandler);

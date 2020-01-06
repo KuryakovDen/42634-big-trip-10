@@ -3,23 +3,23 @@ import {RenderPosition} from '../utils/common.js';
 const render = (container, element, place) => {
   switch (place) {
     case RenderPosition.AFTERBEGIN:
-      container.prepend(element);
+      container.prepend(element.getElement());
       break;
     case RenderPosition.BEFOREEND:
-      container.append(element);
+      container.append(element.getElement());
       break;
   }
 };
 
-const replace = (oldComponent, newComponent) => {
+const replace = (newComponent, oldComponent) => {
   const parentElement = oldComponent.getElement().parentElement;
-  const oldElement = oldComponent.getElement();
   const newElement = newComponent.getElement();
+  const oldElement = oldComponent.getElement();
 
   const isExistElements = !!(parentElement && newElement && oldElement);
 
   if (isExistElements && parentElement.contains(oldElement)) {
-    parentElement.replaceChild(oldElement, newElement);
+    parentElement.replaceChild(newElement, oldElement);
   }
 };
 

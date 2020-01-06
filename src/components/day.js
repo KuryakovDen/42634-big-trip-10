@@ -27,7 +27,7 @@ export default class DayComponent extends AbstractComponent {
     if (!this._element) {
       this._element = createElement(this.getTemplate());
 
-      render(this._element, new EventListComponent(this._dayItem.dayEvents).getElement(), RenderPosition.BEFOREEND);
+      render(this._element, new EventListComponent(this._dayItem.dayEvents), RenderPosition.BEFOREEND);
     }
 
     return this._element;

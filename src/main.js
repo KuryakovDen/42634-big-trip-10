@@ -26,21 +26,21 @@ const renderApplication = () => {
 
   // TripInfo
   const tripInfoComponent = new TripInfoComponent(eventList);
-  render(tripInfoElement, tripInfoComponent.getElement(), RenderPosition.AFTERBEGIN);
+  render(tripInfoElement, tripInfoComponent, RenderPosition.AFTERBEGIN);
 
   // Menu
   tripControlElements[0].classList.remove(`visually-hidden`);
   tripControlElements[0].firstChild.textContent = null;
 
   const menuComponent = new MenuComponent(menuItemList);
-  render(tripControlElements[0], menuComponent.getElement(), RenderPosition.BEFOREEND);
+  render(tripControlElements[0], menuComponent, RenderPosition.BEFOREEND);
 
   // Filter
   tripControlElements[1].classList.remove(`visually-hidden`);
   tripControlElements[1].firstChild.textContent = null;
 
   const filterComponent = new FilterComponent(filterItemList);
-  render(tripControlElements[1], filterComponent.getElement(), RenderPosition.AFTERBEGIN);
+  render(tripControlElements[1], filterComponent, RenderPosition.AFTERBEGIN);
 
   tripEventsElement.classList.remove(`visually-hidden`);
   tripEventsElement.lastChild.textContent = null;
@@ -48,14 +48,14 @@ const renderApplication = () => {
   if (eventList.length) {
     // Sorting
     const sortComponent = new SortComponent(sortItemList);
-    render(tripEventsElement, sortComponent.getElement(), RenderPosition.AFTERBEGIN);
+    render(tripEventsElement, sortComponent, RenderPosition.AFTERBEGIN);
 
     // DayList
     const dayListComponent = new DayListComponent(eventList);
-    render(tripEventsElement, dayListComponent.getElement(), RenderPosition.BEFOREEND);
+    render(tripEventsElement, dayListComponent, RenderPosition.BEFOREEND);
   } else {
     const noPointsComponent = new NoPointsComponent();
-    render(tripEventsElement, noPointsComponent.getElement(), RenderPosition.BEFOREEND);
+    render(tripEventsElement, noPointsComponent, RenderPosition.BEFOREEND);
   }
 };
 
