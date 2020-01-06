@@ -1,4 +1,5 @@
-import {createElement, render, RenderPosition} from '../utils/common.js';
+import {createElement, RenderPosition} from '../utils/common.js';
+import {render} from '../utils/render.js';
 import {getDateTime, getShortDate} from '../utils/date.js';
 import EventListComponent from './event-list.js';
 import AbstractComponent from './abstract.js';

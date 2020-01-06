@@ -1,4 +1,5 @@
-import {createElement, render, RenderPosition, replace} from '../utils/common.js';
+import {createElement, RenderPosition} from '../utils/common.js';
+import {render} from '../utils/render.js';
 import EventComponent from './event.js';
 import EventEditComponent from './event-edit.js';
 import AbstractComponent from './abstract.js';
@@ -18,8 +19,8 @@ export default class EventListComponent extends AbstractComponent {
       this._element = createElement(this.getTemplate());
 
       this._eventList.forEach((item) => {
-        const eventToEdit = () => replace(eventEditElement, eventElement);
-        const editToEvent = () => replace(eventElement, eventEditElement);
+        const eventToEdit = () => this._element.replaceChild(eventEditElement, eventElement);
+        const editToEvent = () => this._element.replaceChild(eventElement, eventEditElement);
         const documentKeyDownHandler = (evt) => {
           const isEscKey = evt.key === `Escape` || evt.key === `Esc`;
 

@@ -1,4 +1,5 @@
-import {createElement, splitEventsByDay, render, RenderPosition} from '../utils/common.js';
+import {createElement, splitEventsByDay, RenderPosition} from '../utils/common.js';
+import {render} from '../utils/render.js';
 import DayComponent from './day.js';
 import AbstractComponent from './abstract.js';
 
