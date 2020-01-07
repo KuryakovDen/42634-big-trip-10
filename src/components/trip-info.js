@@ -1,11 +1,12 @@
-import {getShortDate, createElement} from '../utils.js';
+import {getShortDate} from '../utils/date.js';
+import AbstractComponent from '../components/abstract.js';
 
 const getDateTitle = (eventList) => {
   return `${getShortDate(eventList[0].start)}&nbsp;&mdash;&nbsp;${getShortDate(eventList[eventList.length - 1].finish)}`;
 };
 
 const createTripInfo = (eventList) => {
-  const shortTrip = eventList.length > 2 ? [eventList[0].destination, `...`, eventList[eventList.length - 1].destination] : [eventList[0].destination, eventList[1].destination];
+  const shortTrip = eventList.length > 3 ? [eventList[0].destination, `...`, eventList[eventList.length - 1].destination] : [eventList[0].destination, eventList[1].destination];
 
   return (
     `<div class="trip-info__main">
@@ -14,27 +15,14 @@ const createTripInfo = (eventList) => {
     </div>`);
 };
 
-class TripInfoComponent {
+export default class TripInfoComponent extends AbstractComponent {
   constructor(events) {
-    this._element = null;
+    super();
     this._events = events;
   }
 
   getTemplate() {
     return createTripInfo(this._events);
   }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
-  }
 }
 
-export {TripInfoComponent};

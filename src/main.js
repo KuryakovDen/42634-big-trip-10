@@ -1,61 +1,39 @@
-import {TripInfoComponent} from './components/trip-info.js';
-import {MenuComponent} from './components/menu.js';
-import {FilterComponent} from './components/filter.js';
-import {SortComponent} from './components/sort.js';
-import {DayListComponent} from './components/day-list.js';
-import {NoPointsComponent} from './components/no-points.js';
+import TripInfoComponent from './components/trip-info.js';
+import MenuComponent from './components/menu.js';
+import FilterComponent from './components/filter.js';
 import generateEventList from './mock/event-data.js';
-import {menuItemList, filterItemList, sortItemList} from './const.js';
-import {render, RenderPosition} from './utils.js';
+import {menuItemList, filterItemList} from './const.js';
+import {RenderPosition} from './utils/common.js';
+import {render} from './utils/render.js';
+import TripController from './controllers/trip-controller.js';
 
 const eventList = generateEventList();
 
 const sumOffers = (offerList) => offerList.reduce((accum, current) => accum + current.isChecked * current.cost, 0);
 const sumEvents = (events) => events.reduce((accum, current) => accum + current.cost + sumOffers(current.offers), 0);
 
-const renderApplication = () => {
-  const tripMainElement = document.querySelector(`.trip-main`);
-  const tripEventsElement = document.querySelector(`.trip-events h2`);
-  const tripCost = document.querySelector(`.trip-info__cost-value`);
+const tripMainElement = document.querySelector(`.trip-main`);
+const tripEventsElement = document.querySelector(`.trip-events`);
+const tripCost = document.querySelector(`.trip-info__cost-value`);
+const tripInfoElement = tripMainElement.querySelector(`.trip-info`);
+const tripControlElements = tripMainElement.querySelectorAll(`.trip-controls h2`);
 
-  tripCost.innerText = sumEvents(eventList);
+tripCost.innerText = sumEvents(eventList);
 
-  const tripInfoElement = tripMainElement.querySelector(`.trip-info`);
-  const tripControlElements = tripMainElement.querySelectorAll(`.trip-controls h2`);
+const tripController = new TripController(tripEventsElement, eventList);
 
-  // TripInfo
-  const tripInfoComponent = new TripInfoComponent(eventList);
-  render(tripInfoElement, tripInfoComponent.getElement(), RenderPosition.AFTERBEGIN);
+if (eventList.length) {
+  render(tripInfoElement, new TripInfoComponent(eventList), RenderPosition.AFTERBEGIN);
+}
 
-  // Menu
-  tripControlElements[0].classList.remove(`visually-hidden`);
-  tripControlElements[0].firstChild.textContent = null;
+render(tripControlElements[0], new MenuComponent(menuItemList), RenderPosition.AFTERBEGIN);
 
-  const menuComponent = new MenuComponent(menuItemList);
-  render(tripControlElements[0], menuComponent.getElement(), RenderPosition.BEFOREEND);
+tripControlElements[0].classList.remove(`visually-hidden`);
+tripControlElements[0].lastChild.textContent = null;
 
-  // Filter
-  tripControlElements[1].classList.remove(`visually-hidden`);
-  tripControlElements[1].firstChild.textContent = null;
+render(tripControlElements[1], new FilterComponent(filterItemList), RenderPosition.AFTERBEGIN);
 
-  const filterComponent = new FilterComponent(filterItemList);
-  render(tripControlElements[1], filterComponent.getElement(), RenderPosition.AFTERBEGIN);
+tripControlElements[1].classList.remove(`visually-hidden`);
+tripControlElements[1].lastChild.textContent = null;
 
-  tripEventsElement.classList.remove(`visually-hidden`);
-  tripEventsElement.lastChild.textContent = null;
-
-  if (eventList.length) {
-    // Sorting
-    const sortComponent = new SortComponent(sortItemList);
-    render(tripEventsElement, sortComponent.getElement(), RenderPosition.AFTERBEGIN);
-
-    // DayList
-    const dayListComponent = new DayListComponent(eventList);
-    render(tripEventsElement, dayListComponent.getElement(), RenderPosition.BEFOREEND);
-  } else {
-    const noPointsComponent = new NoPointsComponent();
-    render(tripEventsElement, noPointsComponent.getElement(), RenderPosition.BEFOREEND);
-  }
-};
-
-renderApplication();
+tripController.render();

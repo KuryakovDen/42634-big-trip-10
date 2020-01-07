@@ -1,4 +1,4 @@
-import {getRandomNumber, getRandomElement} from '../utils.js';
+import {getRandomNumber, getRandomElement} from '../utils/common.js';
 
 const TEXT_DATA = `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 Cras aliquet varius magna, non porta ligula feugiat eget.

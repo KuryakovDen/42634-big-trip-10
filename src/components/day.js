@@ -1,9 +1,9 @@
-import {getDateTime, getShortDate, createElement, render, RenderPosition} from '../utils.js';
-import {EventListComponent} from './event-list.js';
+import {getDateTime, getShortDate} from '../utils/date.js';
+import AbstractComponent from './abstract.js';
 
-class DayComponent {
+export default class DayComponent extends AbstractComponent {
   constructor(dayItem) {
-    this._element = null;
+    super();
     this._dayItem = dayItem;
   }
 
@@ -19,20 +19,4 @@ class DayComponent {
         </div>
       </li>`);
   }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-
-      render(this._element, new EventListComponent(this._dayItem.dayEvents).getElement(), RenderPosition.BEFOREEND);
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
-  }
 }
-
-export {DayComponent};
