@@ -20,6 +20,12 @@ const getRandomTwoDays = (dateStart) => getRandomDate(dateStart, TimeValue.TWO_D
 const getRandomWeek = (dateStart) => getRandomDate(dateStart, TimeValue.WEEK);
 const getRandom2Week = (dateStart) => getRandomDate(dateStart, TimeValue.TWO_WEEKS);
 
+const getShortDate = (date) => date ? `${date.getDate()} ${Months[date.getMonth()]}` : ``;
+const getShortYear = (date) => String(date.getFullYear()).substr(2, 2);
+const getDate = (date, separator = `-`) => date ? `${getShortYear(date)}${separator}${formatNumber(date.getMonth() + 1)}${separator}${formatNumber(date.getDate())}` : ``;
+const getTime = (date) => date ? `${formatNumber(date.getHours())}:${formatNumber(date.getMinutes())}` : ``;
+const getDateTime = (date) => date ? `${getDate(date)}T${getTime(date)}` : ``;
+
 const getDaysCount = (dateMin, dateMax) => {
   const dateMinCopy = new Date(+dateMin);
   dateMinCopy.setSeconds(0);
@@ -27,11 +33,6 @@ const getDaysCount = (dateMin, dateMax) => {
   dateMinCopy.setHours(0);
   return Math.floor((+dateMax - dateMinCopy) / TimeValue.DAY);
 };
-
-const getShortYear = (date) => String(date.getFullYear()).substr(2, 2);
-const getDate = (date, separator = `-`) => `${getShortYear(date)}${separator}${formatNumber(date.getMonth() + 1)}${separator}${formatNumber(date.getDate())}`;
-const getTime = (date) => `${formatNumber(date.getHours())}:${formatNumber(date.getMinutes())}`;
-const getDateTime = (date) => `${getDate(date)}T${getTime(date)}`;
 
 const formatDate = (date1, date2) => {
   let time = Math.abs(+date1 - date2);
@@ -49,8 +50,6 @@ const formatDate = (date1, date2) => {
 
   return `${daysCount} ${hoursCount} ${minutesCount}`.replace(/  +/g, ` `);
 };
-
-const getShortDate = (date) => `${date.getDate()} ${Months[date.getMonth()]}`;
 
 export {
   getRandomHour,
