@@ -158,4 +158,13 @@ export default class EventEditComponent extends AbstractComponent {
   getTemplate() {
     return createForm(this._eventItem);
   }
+
+  setRollupButtonClickHandler(handler) {
+    const eventRollupButton = this.getElement().querySelector(`.event__rollup-btn`);
+    eventRollupButton.addEventListener(`click`, handler);
+  }
+
+  setSubmitHandler(handler) {
+    this.getElement().addEventListener(`submit`, handler);
+  }
 }

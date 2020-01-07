@@ -10,8 +10,8 @@ import DayComponent from '../components/day.js';
 import DayListComponent from '../components/day-list.js';
 
 const renderEvent = (eventData) => {
-  const eventToEdit = () => replace(eventEditElement, eventElement);
-  const editToEvent = () => replace(eventElement, eventEditElement);
+  const eventToEdit = () => replace(eventEditComponent, eventComponent);
+  const editToEvent = () => replace(eventComponent, eventEditComponent);
   const documentKeyDownHandler = (evt) => {
     const isEscKey = evt.key === `Escape` || evt.key === `Esc`;
 
@@ -22,25 +22,19 @@ const renderEvent = (eventData) => {
   };
 
   const eventComponent = new EventComponent(eventData);
-  const eventElement = eventComponent.getElement();
-
   const eventEditComponent = new EventEditComponent(eventData);
-  const eventEditElement = eventEditComponent.getElement();
 
-  const eventRollupButton = eventElement.querySelector(`.event__rollup-btn`);
-  const eventEditRollupButton = eventEditElement.querySelector(`.event__rollup-btn`);
-
-  eventRollupButton.addEventListener(`click`, () => {
+  eventComponent.setRollupButtonClickHandler(() => {
     eventToEdit();
     document.addEventListener(`keydown`, documentKeyDownHandler);
   });
 
-  eventEditRollupButton.addEventListener(`click`, () => {
+  eventEditComponent.setRollupButtonClickHandler(() => {
     editToEvent();
     document.removeEventListener(`keydown`, documentKeyDownHandler);
   });
 
-  eventEditElement.addEventListener(`submit`, (evt) => {
+  eventEditComponent.setSubmitHandler((evt) => {
     evt.preventDefault();
     editToEvent();
     document.removeEventListener(`keydown`, documentKeyDownHandler);
@@ -50,8 +44,8 @@ const renderEvent = (eventData) => {
 };
 
 const renderEvents = (container, eventList) => {
-  const eventElements = eventList.map((it) => renderEvent(it).getElement());
-  render(container.getElement(), eventElements, RenderPosition.BEFOREEND);
+  const eventComponents = eventList.map((it) => renderEvent(it));
+  render(container.getElement(), ...eventComponents, RenderPosition.BEFOREEND);
 };
 
 export default class TripController {
@@ -70,17 +64,17 @@ export default class TripController {
         const dayComponent = new DayComponent(day);
         const dayEventListComponent = new EventListComponent();
 
-        render(this._dayListComponent.getElement(), dayComponent.getElement(), RenderPosition.BEFOREEND);
-        render(dayComponent.getElement(), dayEventListComponent.getElement(), RenderPosition.BEFOREEND);
+        render(this._dayListComponent.getElement(), dayComponent, RenderPosition.BEFOREEND);
+        render(dayComponent.getElement(), dayEventListComponent, RenderPosition.BEFOREEND);
 
         renderEvents(dayEventListComponent, day.dayEvents);
       });
 
-      render(this._container, this._sortComponent.getElement(), RenderPosition.BEFOREEND);
-      render(this._container, this._dayListComponent.getElement(), RenderPosition.BEFOREEND);
+      render(this._container, this._sortComponent, RenderPosition.BEFOREEND);
+      render(this._container, this._dayListComponent, RenderPosition.BEFOREEND);
 
     } else {
-      render(this._container, new NoPointsComponent().getElement(), RenderPosition.BEFOREEND);
+      render(this._container, new NoPointsComponent(), RenderPosition.BEFOREEND);
     }
   }
 }
