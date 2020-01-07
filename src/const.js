@@ -22,6 +22,12 @@ const EventType = {
   TRIP: `Trip`
 };
 
+const SortType = {
+  EVENT: `event`,
+  TIME: `time`,
+  PRICE: `price`
+};
+
 const EventTypeProperties = {
   [EventType.TAXI]: {
     name: `Taxi`,
@@ -188,9 +194,9 @@ const filterItemList = [
 
 const sortItemList = [
   {name: `Day`, isChecked: false, direction: true},
-  {name: `Event`, isChecked: true, direction: false},
-  {name: `Time`, isChecked: false, direction: true},
-  {name: `Price`, isChecked: false, direction: true},
+  {name: `Event`, isChecked: true, direction: false, sortType: SortType.EVENT},
+  {name: `Time`, isChecked: false, direction: true, sortType: SortType.TIME},
+  {name: `Price`, isChecked: false, direction: true, sortType: SortType.PRICE},
   {name: `Offers`, isChecked: false, direction: true}
 ];
 
@@ -201,6 +207,7 @@ export {
   MovingType,
   PlaceholderParticle,
   EventType,
+  SortType,
   EventTypeProperties,
   Destinations,
   Months,

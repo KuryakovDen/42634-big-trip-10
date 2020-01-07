@@ -9,7 +9,8 @@ const createSortItem = (sortItem) => {
 
   return (
     `<div class="trip-sort__item  trip-sort__item--${name}">
-      <input id="sort-${name}" class="trip-sort__input  visually-hidden" type="radio" name="trip-sort" value="sort-${name}"${sortItem.isChecked ? `checked` : ``}>
+    <input  data-sort-type="${sortItem.sortType}" id="sort-${name}" class="trip-sort__input
+     visually-hidden" type="radio" name="trip-sort" value="sort-${name}"${sortItem.isChecked ? `checked` : ``}>
       <label class="trip-sort__btn" for="sort-${name}">
         ${sortItem.name}
         ${direction}
@@ -28,9 +29,17 @@ export default class SortComponent extends AbstractComponent {
   constructor(sortPoints) {
     super();
     this._sortPoints = sortPoints;
+    this._activeSortType = sortPoints[1].sortType;
   }
 
   getTemplate() {
     return createSort(this._sortPoints);
+  }
+
+  setSortTypeChangeHandler(handler) {
+    this.getElement().addEventListener(`click`, (evt) => {
+      this._activeSortType = evt.target.dataset.sortType;
+      handler(this._activeSortType);
+    });
   }
 }
