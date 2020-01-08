@@ -1,14 +1,14 @@
-const MovingType = {
+export const MovingType = {
   MOVING: `moving`,
   STAYING: `staying`
 };
 
-const PlaceholderParticle = {
+export const PlaceholderParticle = {
   [MovingType.MOVING]: `to`,
   [MovingType.STAYING]: `in`
 };
 
-const EventType = {
+export const EventType = {
   TAXI: `Taxi`,
   BUS: `Bus`,
   TRAIN: `Train`,
@@ -22,13 +22,7 @@ const EventType = {
   TRIP: `Trip`
 };
 
-const SortType = {
-  EVENT: `event`,
-  TIME: `time`,
-  PRICE: `price`
-};
-
-const EventTypeProperties = {
+export const EventTypeProperties = {
   [EventType.TAXI]: {
     name: `Taxi`,
     icon: `taxi.png`,
@@ -96,26 +90,31 @@ const EventTypeProperties = {
   }
 };
 
-const Destinations = [
+export const Destinations = [
+  `Vein`,
   `Minsk`,
   `London`,
-  `Kogalym`,
+  `Birmingham`,
+  `Budapest`,
   `Berlin`,
   `Barcelona`,
   `Rome`,
   `Milan`,
+  `Warsaw`,
   `Moscow`,
   `St. Petersburg`,
-  `Biysk`,
+  `Perm`,
+  `Derevnya`,
   `Istanbul`,
   `Kiev`,
-  `Amsterdam`,
+  `Kharkov`,
+  `Odessa`,
   `Paris`,
   `Prague`,
   `Sydney`
 ];
 
-const Months = [
+export const Months = [
   `JAN`,
   `FEB`,
   `MAR`,
@@ -130,7 +129,7 @@ const Months = [
   `DEC`
 ];
 
-const TimeValue = {
+export const TimeValue = {
   MINUTE: 60 * 1000,
   HOUR: 60 * 60 * 1000,
   TWO_HOURS: 2 * 60 * 60 * 1000,
@@ -141,7 +140,7 @@ const TimeValue = {
   TWO_WEEKS: 14 * 2 * 12 * 60 * 60 * 1000
 };
 
-const EVENT_DEFAULT = {
+export const EVENT_DEFAULT = {
   type: EventType.FLIGHT,
   start: new Date(),
   finish: new Date(Date.now() + TimeValue.DAY),
@@ -151,7 +150,7 @@ const EVENT_DEFAULT = {
   offers: []
 };
 
-const OfferType = {
+export const OfferType = {
   LUGGAGE: `luggage`,
   COMFORT: `comfort`,
   MEAL: `meal`,
@@ -159,7 +158,7 @@ const OfferType = {
   TRAIN: `train`
 };
 
-const OfferTypeOptions = {
+export const OfferTypeOptions = {
   [OfferType.LUGGAGE]: {
     name: `Add luggage`
   },
@@ -179,38 +178,4 @@ const OfferTypeOptions = {
   [OfferType.TRAIN]: {
     name: `Travel by train`
   }
-};
-
-const menuItemList = [
-  {name: `Table`, href: `#`, active: true},
-  {name: `Stats`, href: `#`, active: false}
-];
-
-const filterItemList = [
-  {name: `Everything`, isChecked: true},
-  {name: `Future`, isChecked: false},
-  {name: `Past`, isChecked: false}
-];
-
-const sortItemList = [
-  {name: `Event`, isChecked: true, direction: false, sortType: SortType.EVENT},
-  {name: `Time`, isChecked: false, direction: true, sortType: SortType.TIME},
-  {name: `Price`, isChecked: false, direction: true, sortType: SortType.PRICE},
-];
-
-export {
-  menuItemList,
-  filterItemList,
-  sortItemList,
-  MovingType,
-  PlaceholderParticle,
-  EventType,
-  SortType,
-  EventTypeProperties,
-  Destinations,
-  Months,
-  TimeValue,
-  EVENT_DEFAULT,
-  OfferType,
-  OfferTypeOptions
 };
