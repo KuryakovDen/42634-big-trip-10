@@ -9,36 +9,42 @@ const createSortItem = (sortItem) => {
 
   return (
     `<div class="trip-sort__item  trip-sort__item--${name}">
-    <input  data-sort-type="${sortItem.sortType}" id="sort-${name}" class="trip-sort__input
-     visually-hidden" type="radio" name="trip-sort" value="sort-${name}"${sortItem.isChecked ? `checked` : ``}>
-      <label class="trip-sort__btn" for="sort-${name}">${sortItem.name}${direction}</label>
+      <input  data-sort-type="${sortItem.sortType}" id="sort-${name}" class="trip-sort__input  visually-hidden" type="radio" name="trip-sort" value="sort-${name}"${sortItem.isChecked ? `checked` : ``}>
+      <label class="trip-sort__btn" for="sort-${name}">
+        ${sortItem.name}
+        ${direction}
+      </label>
     </div>`);
 };
 
 const createSort = (sortItems) => {
   return (
     `<form class="trip-events__trip-sort  trip-sort" action="#" method="get">
+      <span class="trip-sort__item  trip-sort__item--day">Sort</span>
       ${sortItems.map((item) => createSortItem(item)).join(`\n`)}
+      <span class="trip-sort__item  trip-sort__item--offers">Offers</span>
     </form>`);
 };
 
 export default class SortComponent extends AbstractComponent {
-  constructor(sortPoints) {
-    const DEFAULT_SORT_POINT = 1;
+  constructor(sortItems) {
+    const DEFAULT_SORT_ITEM = 1;
 
     super();
-    this._sortPoints = sortPoints;
-    this._activeSortType = sortPoints[DEFAULT_SORT_POINT].sortType;
+    this._sortItems = sortItems;
+    this._activeSortType = sortItems[DEFAULT_SORT_ITEM].sortType;
   }
 
   getTemplate() {
-    return createSort(this._sortPoints);
+    return createSort(this._sortItems);
   }
 
   setSortTypeChangeHandler(handler) {
     this.getElement().addEventListener(`click`, (evt) => {
-      this._activeSortType = evt.target.dataset.sortType;
-      handler(this._activeSortType);
+      if (evt.target.dataset.sortType && evt.target.dataset.sortType !== this._activeSortType) {
+        this._activeSortType = evt.target.dataset.sortType;
+        handler(this._activeSortType);
+      }
     });
   }
 }
