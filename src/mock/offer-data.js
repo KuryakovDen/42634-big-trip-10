@@ -12,7 +12,7 @@ export const generateOfferList = () => {
 
   const offers = [];
   set.forEach((item) => {
-    offers.push({type: item, isChecked: getRandomBoolean(), cost: getRandomNumber(200)});
+    offers.push({type: item, checked: getRandomBoolean(), cost: getRandomNumber(200)});
   });
 
   return offers;

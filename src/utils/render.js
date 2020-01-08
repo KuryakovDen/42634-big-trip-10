@@ -1,35 +1,44 @@
-import {RenderPosition} from '../utils/common.js';
+export const RenderPosition = {
+  BEFORE_BEGIN: `beforebegin`,
+  AFTER_BEGIN: `afterbegin`,
+  BEFORE_END: `beforeend`,
+  AFTER_END: `afterend`
+};
 
-const render = (container, element, place) => {
-  switch (place) {
-    case RenderPosition.AFTERBEGIN:
-      container.prepend(element.getElement());
+export const renderComponent = (container, position, ...components) => {
+  const elements = components.map((it) => it.getElement());
+
+  switch (position) {
+    case RenderPosition.BEFORE_BEGIN:
+      container.before(...elements);
       break;
-    case RenderPosition.BEFOREEND:
-      container.append(element.getElement());
+
+    case RenderPosition.AFTER_BEGIN:
+      container.prepend(...elements);
+      break;
+
+    case RenderPosition.BEFORE_END:
+      container.append(...elements);
+      break;
+
+    case RenderPosition.AFTER_END:
+      container.after(...elements);
       break;
   }
 };
 
-const replace = (newComponent, oldComponent) => {
+export const createElement = (template) => {
+  const newElement = document.createElement(`div`);
+  newElement.innerHTML = template;
+  return newElement.firstElementChild;
+};
+
+export const replaceComponent = (newComponent, oldComponent) => {
   const parentElement = oldComponent.getElement().parentElement;
-  const newElement = newComponent.getElement();
-  const oldElement = oldComponent.getElement();
-
-  const isExistElements = !!(parentElement && newElement && oldElement);
-
-  if (isExistElements && parentElement.contains(oldElement)) {
-    parentElement.replaceChild(newElement, oldElement);
-  }
+  parentElement.replaceChild(newComponent.getElement(), oldComponent.getElement());
 };
 
-const remove = (component) => {
+export const removeComponent = (component) => {
   component.getElement().remove();
   component.removeElement();
-};
-
-export {
-  render,
-  replace,
-  remove,
 };
