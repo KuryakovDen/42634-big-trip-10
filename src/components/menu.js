@@ -10,8 +10,7 @@ const createMenuItemHtml = (menuItem) => `
 
 const createMenuHtml = (menuItems) => {
   const menuItemList = menuItems.map((item) => createMenuItemHtml(item)).join(`\n`);
-  return `
-              <nav class="trip-controls__trip-tabs  trip-tabs">${menuItemList}</nav>`;
+  return `<nav class="trip-controls__trip-tabs  trip-tabs">${menuItemList}</nav>`;
 };
 
 export default class MenuComponent extends AbstractComponent {

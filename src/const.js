@@ -1,14 +1,44 @@
-export const MovingType = {
+const MovingType = {
   MOVING: `moving`,
   STAYING: `staying`
 };
 
-export const PlaceholderParticle = {
+const PlaceholderParticle = {
   [MovingType.MOVING]: `to`,
   [MovingType.STAYING]: `in`
 };
 
-export const EventType = {
+const OfferType = {
+  LUGGAGE: `luggage`,
+  COMFORT: `comfort`,
+  MEAL: `meal`,
+  SEATS: `seats`,
+  TRAIN: `train`
+};
+
+const OfferTypeOptions = {
+  [OfferType.LUGGAGE]: {
+    name: `Add luggage`
+  },
+
+  [OfferType.COMFORT]: {
+    name: `Switch to comfort class`
+  },
+
+  [OfferType.MEAL]: {
+    name: `Add meal`
+  },
+
+  [OfferType.SEATS]: {
+    name: `Choose seats`
+  },
+
+  [OfferType.TRAIN]: {
+    name: `Travel by train`
+  }
+};
+
+const EventType = {
   TAXI: `Taxi`,
   BUS: `Bus`,
   TRAIN: `Train`,
@@ -22,7 +52,7 @@ export const EventType = {
   TRIP: `Trip`
 };
 
-export const EventTypeProperties = {
+const EventTypeProperties = {
   [EventType.TAXI]: {
     name: `Taxi`,
     icon: `taxi.png`,
@@ -32,43 +62,76 @@ export const EventTypeProperties = {
   [EventType.BUS]: {
     name: `Bus`,
     icon: `bus.png`,
-    movingType: MovingType.MOVING
+    movingType: MovingType.MOVING,
+    availableOfferTypes: new Set([
+      OfferType.SEATS
+    ])
   },
 
   [EventType.TRAIN]: {
     name: `Train`,
     icon: `train.png`,
-    movingType: MovingType.MOVING
+    movingType: MovingType.MOVING,
+    availableOfferTypes: new Set([
+      OfferType.LUGGAGE,
+      OfferType.COMFORT,
+      OfferType.MEAL
+    ])
   },
 
   [EventType.SHIP]: {
     name: `Ship`,
     icon: `ship.png`,
-    movingType: MovingType.MOVING
+    movingType: MovingType.MOVING,
+    availableOfferTypes: new Set([
+      OfferType.LUGGAGE,
+      OfferType.COMFORT,
+      OfferType.MEAL,
+      OfferType.SEATS
+    ])
   },
 
   [EventType.TRANSPORT]: {
     name: `Transport`,
     icon: `transport.png`,
-    movingType: MovingType.MOVING
+    movingType: MovingType.MOVING,
+    availableOfferTypes: new Set([
+      OfferType.LUGGAGE,
+      OfferType.COMFORT,
+      OfferType.MEAL,
+      OfferType.SEATS
+    ])
   },
 
   [EventType.DRIVE]: {
     name: `Drive`,
     icon: `drive.png`,
-    movingType: MovingType.MOVING
+    movingType: MovingType.MOVING,
+    availableOfferTypes: new Set([
+      OfferType.COMFORT
+    ])
   },
 
   [EventType.FLIGHT]: {
     name: `Flight`,
     icon: `flight.png`,
-    movingType: MovingType.MOVING
+    movingType: MovingType.MOVING,
+    availableOfferTypes: new Set([
+      OfferType.LUGGAGE,
+      OfferType.COMFORT,
+      OfferType.MEAL,
+      OfferType.SEATS,
+      OfferType.TRAIN
+    ])
   },
 
   [EventType.CHECKIN]: {
     name: `Check-in`,
     icon: `check-in.png`,
-    movingType: MovingType.STAYING
+    movingType: MovingType.STAYING,
+    availableOfferTypes: new Set([
+      OfferType.MEAL
+    ])
   },
 
   [EventType.SIGHTSEEING]: {
@@ -90,31 +153,7 @@ export const EventTypeProperties = {
   }
 };
 
-export const Destinations = [
-  `Vein`,
-  `Minsk`,
-  `London`,
-  `Birmingham`,
-  `Budapest`,
-  `Berlin`,
-  `Barcelona`,
-  `Rome`,
-  `Milan`,
-  `Warsaw`,
-  `Moscow`,
-  `St. Petersburg`,
-  `Perm`,
-  `Derevnya`,
-  `Istanbul`,
-  `Kiev`,
-  `Kharkov`,
-  `Odessa`,
-  `Paris`,
-  `Prague`,
-  `Sydney`
-];
-
-export const Months = [
+const months = [
   `JAN`,
   `FEB`,
   `MAR`,
@@ -129,7 +168,7 @@ export const Months = [
   `DEC`
 ];
 
-export const TimeValue = {
+const TimeValue = {
   MINUTE: 60 * 1000,
   HOUR: 60 * 60 * 1000,
   TWO_HOURS: 2 * 60 * 60 * 1000,
@@ -140,7 +179,7 @@ export const TimeValue = {
   TWO_WEEKS: 14 * 2 * 12 * 60 * 60 * 1000
 };
 
-export const EVENT_DEFAULT = {
+const EVENT_DEFAULT = {
   type: EventType.FLIGHT,
   start: new Date(),
   finish: new Date(Date.now() + TimeValue.DAY),
@@ -150,32 +189,14 @@ export const EVENT_DEFAULT = {
   offers: []
 };
 
-export const OfferType = {
-  LUGGAGE: `luggage`,
-  COMFORT: `comfort`,
-  MEAL: `meal`,
-  SEATS: `seats`,
-  TRAIN: `train`
-};
-
-export const OfferTypeOptions = {
-  [OfferType.LUGGAGE]: {
-    name: `Add luggage`
-  },
-
-  [OfferType.COMFORT]: {
-    name: `Switch to comfort class`
-  },
-
-  [OfferType.MEAL]: {
-    name: `Add meal`
-  },
-
-  [OfferType.SEATS]: {
-    name: `Choose seats`
-  },
-
-  [OfferType.TRAIN]: {
-    name: `Travel by train`
-  }
+export {
+  MovingType,
+  PlaceholderParticle,
+  OfferType,
+  OfferTypeOptions,
+  EventType,
+  EventTypeProperties,
+  months,
+  TimeValue,
+  EVENT_DEFAULT
 };

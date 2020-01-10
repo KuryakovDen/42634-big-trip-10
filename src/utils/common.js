@@ -1,4 +1,4 @@
-import {Months, TimeValue} from '../const.js';
+import {TimeValue, months} from '../const.js';
 
 export const getRandomNumber = (max, min = 0) => Math.round(min + Math.random() * (max - min));
 
@@ -57,4 +57,4 @@ export const formatDate = (date1, date2) => {
   return `${daysCount} ${hoursCount} ${minutesCount}`.replace(/  +/g, ` `);
 };
 
-export const getShortDate = (date) => date ? `${date.getDate()} ${Months[date.getMonth()]}` : ``;
+export const getShortDate = (date) => date ? `${date.getDate()} ${months[date.getMonth()]}` : ``;
