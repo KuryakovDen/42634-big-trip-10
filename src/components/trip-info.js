@@ -6,13 +6,13 @@ const getDateTitle = (eventList) => {
 };
 
 const createTripInfoHtml = (eventList) => {
-  const shortTrip = eventList.length > 2 ? [eventList[0].destination, `...`, eventList[eventList.length - 1].destination] : [eventList[0].destination, eventList[1].destination];
+  const shortTrip = eventList.length > 3 ? [eventList[0].destination, `...`, eventList[eventList.length - 1].destination] : [eventList[0].destination, eventList[1].destination];
 
-  return `
-            <div class="trip-info__main">
-              <h1 class="trip-info__title">${shortTrip.join(` &mdash; `)}</h1>
-              <p class="trip-info__dates">${getDateTitle(eventList)}</p>
-            </div>`;
+  return (
+    `<div class="trip-info__main">
+      <h1 class="trip-info__title">${shortTrip.join(` &mdash; `)}</h1>
+      <p class="trip-info__dates">${getDateTitle(eventList)}</p>
+    </div>`);
 };
 
 export default class TripInfoComponent extends AbstractComponent {
