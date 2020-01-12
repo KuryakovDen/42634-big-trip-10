@@ -1,7 +1,7 @@
 import {getRandomNumber, getRandomBoolean} from '../utils/common.js';
 import {EventTypeProperties} from '../const.js';
 
-const generateOfferList = (eventType) => {
+export const generateOfferList = (eventType) => {
   const availableOfferTypes = EventTypeProperties[eventType].availableOfferTypes;
   const offers = availableOfferTypes ? Array.from(availableOfferTypes).map((it) => {
     return {
@@ -13,5 +13,3 @@ const generateOfferList = (eventType) => {
 
   return offers;
 };
-
-export {generateOfferList};

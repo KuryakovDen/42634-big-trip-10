@@ -58,6 +58,8 @@ export default class TripController {
     this._dayListComponent = new DayListComponent();
 
     this._pointControllers = [];
+
+    this._onViewChange = this._onViewChange.bind(this);
   }
 
   render() {
@@ -97,7 +99,7 @@ export default class TripController {
   }
 
   _renderEvents(container, eventList) {
-    this._pointControllers = eventList.map((it) => new PointController(container).render(it));
+    this._pointControllers = this._pointControllers.concat(eventList.map((it) => new PointController(container, this._onDataChange, this._onViewChange).render(it)));
   }
 
   _renderDays(container, dayList) {
@@ -109,6 +111,16 @@ export default class TripController {
       renderComponent(dayComponent.getElement(), RenderPosition.BEFORE_END, dayEventListComponent);
 
       this._renderEvents(dayEventListComponent.getElement(), it.dayEvents);
+    });
+  }
+
+  _onDataChange(pointController, oldEventData, newEventData, pointEventMode) {
+    pointController.render(newEventData, pointEventMode);
+  }
+
+  _onViewChange() {
+    this._pointControllers.forEach((it) => {
+      it.setDefaultView();
     });
   }
 }
