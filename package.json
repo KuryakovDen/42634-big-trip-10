@@ -20,7 +20,9 @@
     "node": "10"
   },
   "dependencies": {
-    "flatpickr": "^4.6.3",
-    "moment": "^2.24.0"
+    "css-loader": "3.4.2",
+    "flatpickr": "4.6.3",
+    "moment": "2.24.0",
+    "style-loader": "1.1.3"
   }
 }
