@@ -153,21 +153,6 @@ const EventTypeProperties = {
   }
 };
 
-const months = [
-  `JAN`,
-  `FEB`,
-  `MAR`,
-  `APR`,
-  `MAY`,
-  `JUN`,
-  `JUL`,
-  `AUG`,
-  `SEP`,
-  `OCT`,
-  `NOV`,
-  `DEC`
-];
-
 const TimeValue = {
   MINUTE: 60 * 1000,
   HOUR: 60 * 60 * 1000,
@@ -196,7 +181,6 @@ export {
   OfferTypeOptions,
   EventType,
   EventTypeProperties,
-  months,
   TimeValue,
   EVENT_DEFAULT
 };
