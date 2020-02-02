@@ -1,14 +1,4 @@
-const MovingType = {
-  MOVING: `moving`,
-  STAYING: `staying`
-};
-
-const PlaceholderParticle = {
-  [MovingType.MOVING]: `to`,
-  [MovingType.STAYING]: `in`
-};
-
-const OfferType = {
+export const OfferType = {
   LUGGAGE: `luggage`,
   COMFORT: `comfort`,
   MEAL: `meal`,
@@ -16,7 +6,7 @@ const OfferType = {
   TRAIN: `train`
 };
 
-const OfferTypeOptions = {
+export const OfferTypeOptions = {
   [OfferType.LUGGAGE]: {
     name: `Add luggage`
   },
@@ -38,21 +28,31 @@ const OfferTypeOptions = {
   }
 };
 
-const EventType = {
-  TAXI: `Taxi`,
-  BUS: `Bus`,
-  TRAIN: `Train`,
-  SHIP: `Ship`,
-  TRANSPORT: `Transport`,
-  DRIVE: `Drive`,
-  FLIGHT: `Flight`,
-  CHECKIN: `Check-in`,
-  SIGHTSEEING: `Sightseeing`,
-  RESTAURANT: `Restaurant`,
-  TRIP: `Trip`
+export const MovingType = {
+  MOVING: `moving`,
+  STAYING: `staying`
 };
 
-const EventTypeProperties = {
+export const PlaceholderParticle = {
+  [MovingType.MOVING]: `to`,
+  [MovingType.STAYING]: `in`
+};
+
+export const EventType = {
+  "TAXI": `Taxi`,
+  "BUS": `Bus`,
+  "TRAIN": `Train`,
+  "SHIP": `Ship`,
+  "TRANSPORT": `Transport`,
+  "DRIVE": `Drive`,
+  "FLIGHT": `Flight`,
+  'CHECK-IN': `Check-in`,
+  "SIGHTSEEING": `Sightseeing`,
+  "RESTAURANT": `Restaurant`,
+  "TRIP": `Trip`
+};
+
+export const EventTypeProperties = {
   [EventType.TAXI]: {
     name: `Taxi`,
     icon: `taxi.png`,
@@ -125,7 +125,7 @@ const EventTypeProperties = {
     ])
   },
 
-  [EventType.CHECKIN]: {
+  [EventType[`CHECK-IN`]]: {
     name: `Check-in`,
     icon: `check-in.png`,
     movingType: MovingType.STAYING,
@@ -153,7 +153,7 @@ const EventTypeProperties = {
   }
 };
 
-const TimeValue = {
+export const TimeValue = {
   MINUTE: 60 * 1000,
   HOUR: 60 * 60 * 1000,
   TWO_HOURS: 2 * 60 * 60 * 1000,
@@ -164,23 +164,30 @@ const TimeValue = {
   TWO_WEEKS: 14 * 2 * 12 * 60 * 60 * 1000
 };
 
-const EVENT_DEFAULT = {
+export const EVENT_DEFAULT = {
+  id: null,
   type: EventType.FLIGHT,
-  start: new Date(),
-  finish: new Date(Date.now() + TimeValue.DAY),
+  start: null,
+  finish: null,
   destination: ``,
   cost: 0,
   isFavorite: false,
   offers: []
 };
 
-export {
-  MovingType,
-  PlaceholderParticle,
-  OfferType,
-  OfferTypeOptions,
-  EventType,
-  EventTypeProperties,
-  TimeValue,
-  EVENT_DEFAULT
+export const EventMode = {
+  DEFAULT: `event-preview`,
+  EDITING: `event-edit`,
+  ADDING: `event-adding`
+};
+
+export const TripMode = {
+  DEFAULT: `trip-default`,
+  ADDING: `trip-append`,
+  EMPTY: `trip-empty`
+};
+
+export const MenuMode = {
+  TABLE: `table`,
+  STATS: `stats`
 };
