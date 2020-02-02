@@ -1,19 +1,17 @@
 import AbstractSmartComponent from './abstract-smart-component.js';
 import {DestinationOptions} from '../mock/destination-data.js';
 import {generateOfferList} from '../mock/offer-data.js';
-import {EVENT_DEFAULT, EventType, EventTypeProperties, MovingType, PlaceholderParticle, OfferTypeOptions} from '../const.js';
+import {EventType, EventTypeProperties, MovingType, PlaceholderParticle, OfferTypeOptions} from '../const.js';
 import '../../node_modules/flatpickr/dist/flatpickr.css';
 import flatpickr from 'flatpickr';
 
 const createEventTypeItem = (eventType) => {
   const eventTypeCode = eventType.toLowerCase();
   return `
-  <div class="event__type-item">
-    <input id="event-type-${eventTypeCode}-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${eventTypeCode}">
-    <label class="event__type-label  event__type-label--${eventTypeCode}" for="event-type-${eventTypeCode}-1">${eventType}</label>
-    <input id="event-type-${eventTypeCode}" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${eventTypeCode}">
-    <label class="event__type-label  event__type-label--${eventTypeCode}" for="event-type-${eventTypeCode}">${eventType}</label>
-  </div>`;
+                            <div class="event__type-item">
+                              <input id="event-type-${eventTypeCode}" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${eventTypeCode}">
+                              <label class="event__type-label  event__type-label--${eventTypeCode}" for="event-type-${eventTypeCode}">${eventType}</label>
+                            </div>`;
 };
 
 const createEventTypeList = () => {
@@ -89,8 +87,8 @@ const createDestinationHtml = (destination) => {
                       </section>`;
 };
 
-const createForm = (eventItem = EVENT_DEFAULT) => {
-  const isEditForm = eventItem !== EVENT_DEFAULT;
+const createForm = (eventItem) => {
+  const isNewEvent = eventItem.id === null;
 
   const eventProperty = EventTypeProperties[eventItem.type];
   const icon = eventProperty.icon;
@@ -112,8 +110,8 @@ const createForm = (eventItem = EVENT_DEFAULT) => {
 `;
 
   return `
-                <li class="trip-events__item">
-                  <form class="event  event--edit" action="#" method="post">
+                ${isNewEvent ? `` : `<li class="trip-events__item">`}
+                  <form class="${isNewEvent ? `trip-events__item ` : ``}event  event--edit" action="#" method="post">
                     <header class="event__header">
                       <div class="event__type-wrapper">
                         <label class="event__type  event__type-btn" for="event-type-toggle-1">
@@ -133,7 +131,7 @@ const createForm = (eventItem = EVENT_DEFAULT) => {
                         </datalist>
                       </div>
                       <div class="event__field-group  event__field-group--time">
-                      <label class="visually-hidden" for="event-start-time">
+                        <label class="visually-hidden" for="event-start-time">
                           From
                         </label>
                         <input class="event__input  event__input--time" id="event-start-time" type="text" name="event-start-time" value="">
@@ -151,30 +149,39 @@ const createForm = (eventItem = EVENT_DEFAULT) => {
                         <input class="event__input  event__input--price" id="event-price-1" type="text" name="event-price" value="${eventItem.cost}">
                       </div>
                       <button class="event__save-btn  btn  btn--blue" type="submit">Save</button>
-                      <button class="event__reset-btn" type="reset">${isEditForm ? `Delete` : `Cancel`}</button>
-                      ${isEditForm ? editFormButtons : ``}
+                      <button class="event__reset-btn" type="reset">${isNewEvent ? `Cancel` : `Delete`}</button>
+                      ${isNewEvent ? `` : editFormButtons}
                     </header>
                     <section class="event__details">
                       ${createEventOffers(eventItem.offers)}
                       ${createDestinationHtml(eventItem.destination)}
                     </section>
                   </form>
-                </li>`;
+                ${isNewEvent ? `` : `</li>`}`;
 };
 
 export default class EventEditComponent extends AbstractSmartComponent {
   constructor(eventItem) {
     super();
     this._eventItem = eventItem;
+    this._copyData = Object.assign({}, eventItem);
 
     this._startFlatpickr = null;
     this._finishFlatpickr = null;
-    this._configFlatpickr();
 
     this._addListeners();
+    this._configFlatpickr();
+  }
+
+  getTemplate() {
+    return createForm(this._eventItem);
   }
 
   _setHandler(handler, element, handlerKeeperName, eventName) {
+    if (!element) {
+      return;
+    }
+
     if (handler) {
       this[handlerKeeperName] = handler;
     }
@@ -185,6 +192,7 @@ export default class EventEditComponent extends AbstractSmartComponent {
   }
 
   _configFlatpickr() {
+
     this._startFlatpickr = flatpickr(this.getElement().querySelector(`#event-start-time`), {
       dateFormat: `y/m/d H:i`,
       enableTime: true,
@@ -200,16 +208,23 @@ export default class EventEditComponent extends AbstractSmartComponent {
     });
   }
 
-  getTemplate() {
-    return createForm(this._eventItem);
-  }
-
   setRollupButtonClickHandler(handler) {
-    this._setHandler(handler, this.getElement().querySelector(`.event__rollup-btn`), `_rollupButtonClickHandler`, `click`);
+    this._setHandler(
+        handler,
+        this.getElement().querySelector(`.event__rollup-btn`),
+        `_rollupButtonClickHandler`,
+        `click`
+    );
   }
 
   setSubmitHandler(handler) {
-    this._setHandler(handler, this.getElement().querySelector(`form`), `_submitHandler`, `submit`);
+    const form = this.getElement().tagName === `FORM` ? this.getElement() : this.getElement().querySelector(`form`);
+    this._setHandler(
+        handler,
+        form,
+        `_submitHandler`,
+        `submit`
+    );
   }
 
   setInputFavoriteChangeHandler(handler) {
@@ -221,12 +236,17 @@ export default class EventEditComponent extends AbstractSmartComponent {
     );
   }
 
-  getData() {
-    return this._eventItem;
+  setDeleteButtonClickHandler(handler) {
+    this._setHandler(
+        handler,
+        this.getElement().querySelector(`.event__reset-btn`),
+        `_deleteButtonClickHandler`,
+        `click`
+    );
   }
 
-  getOldData() {
-
+  getData() {
+    return this._eventItem;
   }
 
   _addListeners() {
@@ -257,12 +277,10 @@ export default class EventEditComponent extends AbstractSmartComponent {
 
     element.querySelector(`.event__input--price`).addEventListener(`change`, (evt) => {
       const cost = +evt.target.value;
-
       this._eventItem.cost = isNaN(cost) ? 0 : cost;
     });
 
     const offersElement = element.querySelector(`.event__available-offers`);
-
     if (offersElement) {
       offersElement.addEventListener(`click`, (evt) => {
         const offerIndex = parseInt(evt.target.dataset.offerIndex, 10);
@@ -277,8 +295,28 @@ export default class EventEditComponent extends AbstractSmartComponent {
   recoveryListeners() {
     this._addListeners();
     this._configFlatpickr();
+
     this.setRollupButtonClickHandler();
     this.setSubmitHandler();
     this.setInputFavoriteChangeHandler();
+  }
+
+  removeElement() {
+    if (this._startFlatpickr) {
+      this._startFlatpickr.destroy();
+      this._startFlatpickr = null;
+    }
+
+    if (this._finishFlatpickr) {
+      this._finishFlatpickr.destroy();
+      this._finishFlatpickr = null;
+    }
+
+    super.removeElement();
+  }
+
+  reset() {
+    this._eventItem = Object.assign({}, this._copyData);
+    this.rerender();
   }
 }
